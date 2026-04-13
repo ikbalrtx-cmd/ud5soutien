@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercices de Soutien – 6AP</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#c1121f; --red-lt:#e63946;
+  --blue:#1d3557; --blue-lt:#457b9d;
+  --orange:#b5440a; --orange-lt:#e76f51;
+  --purple:#6a0dad; --purple-lt:#9b5de5;
+  --green:#1b6e3b; --green-lt:#40916c;
+  --gold:#e9a825;
+  --bg:#edf2f7; --white:#fff;
+  --shadow:0 3px 16px rgba(0,0,0,.10);
+  --r:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#1a1a2e;font-size:14px;line-height:1.6}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,var(--blue) 0%,var(--blue-lt) 100%);
+  color:#fff;text-align:center;padding:14px 20px 12px;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 4px 18px rgba(0,0,0,.22);
+}
+header .pill{
+  display:inline-block;background:var(--red);
+  font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  padding:3px 14px;border-radius:20px;margin-bottom:5px;
+}
+header h1{font-size:clamp(13px,2.8vw,20px);font-weight:900;letter-spacing:.3px}
+header p{font-size:11px;opacity:.78;margin-top:2px}
+
+/* WRAP */
+.wrap{max-width:860px;margin:0 auto;padding:20px 14px 50px}
+
+/* STUDENT BAR */
+.student-bar{
+  background:var(--white);border-radius:var(--r);
+  padding:14px 18px;margin-bottom:18px;
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.student-bar label{font-weight:800;font-size:13px;color:var(--blue);white-space:nowrap}
+.student-bar input{
+  flex:1;min-width:180px;
+  border:2px solid #d0d7de;border-radius:8px;
+  padding:8px 12px;font-family:'Montserrat',sans-serif;
+  font-size:14px;font-weight:700;color:var(--blue);outline:none;
+  transition:border-color .2s;
+}
+.student-bar input:focus{border-color:var(--blue-lt)}
+
+/* NOTICE */
+.notice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.notice-fr,.notice-ar{
+  background:#fffbea;border-radius:10px;
+  padding:11px 15px;box-shadow:var(--shadow);font-size:12.5px;
+}
+.notice-fr{border-left:4px solid var(--gold)}
+.notice-ar{border-right:4px solid var(--gold);direction:rtl;text-align:right;font-family:'Tajawal',sans-serif;font-size:13.5px}
+.notice-fr strong,.notice-ar strong{display:block;color:var(--orange-lt);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+
+/* TABS */
+.tabs{display:flex;gap:10px;margin-bottom:24px}
+.tab{
+  flex:1;padding:12px 8px;border:none;border-radius:10px;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;
+  background:var(--white);color:#9aa;
+  box-shadow:var(--shadow);transition:all .22s;
+}
+.tab.on{
+  background:linear-gradient(135deg,var(--red),#9b0a14);
+  color:#fff;transform:translateY(-2px);
+  box-shadow:0 6px 22px rgba(193,18,31,.32);
+}
+.tab:not(.on):hover{background:#f0f4f8;color:var(--blue)}
+
+/* PANELS */
+.panel{display:none}.panel.on{display:block}
+
+/* CARD */
+.card{background:var(--white);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+.card-head{
+  display:flex;align-items:center;gap:9px;padding:12px 18px;color:#fff;
+  font-size:13px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;
+}
+.card-head .ico{font-size:17px}
+.h-lecture   {background:linear-gradient(90deg,var(--green),var(--green-lt))}
+.h-lexique   {background:linear-gradient(90deg,#8b3a0a,var(--orange-lt))}
+.h-grammaire {background:linear-gradient(90deg,var(--blue),var(--blue-lt))}
+.h-conjugaison{background:linear-gradient(90deg,var(--purple),var(--purple-lt))}
+.h-ortho     {background:linear-gradient(90deg,#7a0000,var(--red-lt))}
+.h-production{background:linear-gradient(90deg,#5a0000,var(--red))}
+.card-body{padding:16px 18px}
+
+/* EXERCISE */
+.ex{margin-bottom:16px;padding-bottom:14px;border-bottom:1px dashed #dde2ea}
+.ex:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.ex-num{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 10px;border-radius:20px;color:#fff;margin-bottom:6px}
+.n-green{background:var(--green)}.n-orange{background:var(--orange)}.n-blue{background:var(--blue)}
+.n-purple{background:var(--purple)}.n-red{background:var(--red)}
+
+.consigne{font-size:13px;font-weight:700;margin-bottom:9px;color:#111;line-height:1.55}
+.consigne em{font-style:italic;font-weight:800}
+
+/* word cloud */
+.cloud{background:#f3f6fa;border-radius:8px;padding:9px 13px;margin-bottom:10px;line-height:2}
+.cloud span{
+  display:inline-block;background:#fff;border:1px solid #d5dbe5;
+  border-radius:6px;padding:1px 9px;margin:2px 3px;font-weight:600;font-size:13px;color:#222;
+}
+
+/* fill inputs */
+.fill-row{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.f-lbl{font-size:13px;font-weight:600;color:#444;min-width:100px}
+input.dash{
+  border:none;border-bottom:2px solid #b0bec5;
+  outline:none;background:transparent;
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:700;color:var(--blue);
+  padding:2px 5px;transition:border-color .2s;
+}
+input.dash:focus{border-bottom-color:var(--red)}
+input.dash.sm{width:90px}
+input.dash.md{width:150px}
+input.dash.lg{width:220px}
+
+.ph-row{display:flex;align-items:baseline;gap:7px;margin-bottom:8px;flex-wrap:wrap}
+.ph-let{font-weight:900;font-size:13px;min-width:20px;color:var(--red)}
+.ph-let.bl{color:var(--blue)}.ph-let.pu{color:var(--purple)}.ph-let.gr{color:var(--green)}
+.ph-txt{font-size:13px;font-weight:500;color:#555}
+
+textarea.ta{
+  width:100%;border:2px solid #d5dbe5;border-radius:8px;
+  padding:9px 12px;resize:vertical;min-height:65px;
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;
+  color:var(--blue);outline:none;background:#fafbfc;
+  transition:border-color .2s;
+}
+textarea.ta:focus{border-color:var(--blue-lt)}
+
+/* reading text */
+.reading-txt{
+  background:#f0f7f4;border-left:4px solid var(--green);
+  border-radius:9px;padding:14px 16px;margin-bottom:14px;
+  font-size:13px;line-height:1.85;color:#333;
+}
+.reading-txt strong{color:var(--green);display:block;margin-bottom:6px;font-size:13.5px}
+
+/* checkbox */
+.chk-row{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:500;margin-bottom:5px;color:#555}
+.chk-row input{width:15px;height:15px;accent-color:var(--orange-lt);cursor:pointer}
+
+/* grille */
+.grille{background:#fff8e1;border-radius:9px;padding:12px 15px;margin-top:12px}
+.grille-title{font-size:11px;font-weight:900;color:var(--orange-lt);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+
+/* 2-col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+
+/* conj grid */
+.conj-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:6px}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(135deg,var(--blue),var(--blue-lt));
+  color:#fff;text-align:center;padding:14px 20px;
+  font-size:11.5px;line-height:1.9;
+}
+footer strong{color:#f4a261;font-weight:800}
+footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#a8d8ea;display:block;margin-top:3px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .notice{grid-template-columns:1fr}
+  .two-col,.conj-grid{grid-template-columns:1fr}
+  .student-bar{flex-direction:column}
+  .student-bar input{min-width:unset;width:100%}
+  .f-lbl{min-width:unset}
+  input.dash.lg{width:100%;max-width:300px}
+}
+@media print{
+  header{position:static}.tabs,.tab{display:none}
+  .panel{display:block!important;page-break-after:always}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="pill">📚 Niveau 6AP</div>
+  <h1>Exercices de Soutien et de Consolidation</h1>
+  <p>Lecture · Lexique · Grammaire · Conjugaison · Orthographe · Production de l'écrit</p>
+</header>
+
+<div class="wrap">
+
+  <!-- NOM -->
+  <div class="student-bar">
+    <label>👤 Nom et Prénom de l'élève :</label>
+    <input type="text" placeholder="Écris ton prénom et ton nom ici…">
+  </div>
+
+  <!-- NOTICE BILINGUE -->
+  <div class="notice">
+    <div class="notice-fr">
+      <strong>📌 Consigne</strong>
+      Réponds directement dans cette page, puis recopie tes réponses dans ton <strong>cahier de soutien</strong>. Choisis ta série et travaille avec soin !
+    </div>
+    <div class="notice-ar">
+      <strong>📌 تعليمة</strong>
+      أجب مباشرةً في هذه الصفحة، ثم انقل إجاباتك في <strong>كراس الدعم</strong>. اختر السلسلة واعمل بجدية !
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab on" onclick="show(1,this)">📘 Série 1</button>
+    <button class="tab"    onclick="show(2,this)">📗 Série 2</button>
+    <button class="tab"    onclick="show(3,this)">📙 Série 3</button>
+  </div>
+
+  <!-- ══════════ SÉRIE 1 ══════════ -->
+  <div class="panel on" id="p1">
+
+    <!-- 1. LECTURE -->
+    <div class="card">
+      <div class="card-head h-lecture"><span class="ico">📖</span> Lecture – Compréhension</div>
+      <div class="card-body">
+        <div class="reading-txt">
+          <strong>La déforestation : une menace pour la planète</strong>
+          Chaque année, des millions d'hectares de forêts disparaissent à travers le monde. La déforestation est principalement causée par l'agriculture intensive, l'exploitation du bois et l'urbanisation. Les forêts jouent un rôle essentiel : elles produisent l'oxygène que nous respirons, abritent des milliers d'espèces animales et végétales, et régulent le climat de notre planète. La disparition des arbres accélère le réchauffement climatique et provoque des inondations, car les racines ne retiennent plus la terre. Des organisations environnementales, comme Greenpeace, mènent des campagnes de sensibilisation et de reboisement pour protéger ces précieux espaces naturels. Chaque citoyen peut agir à son niveau en soutenant ces initiatives ou en adoptant des gestes écologiques au quotidien.
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">1</span>
+          <p class="consigne">Quel est le titre du texte ? Quel est son thème principal ?</p>
+          <textarea class="ta" rows="2" placeholder="Le titre est… Le thème principal est…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">2</span>
+          <p class="consigne">Cite trois causes de la déforestation mentionnées dans le texte.</p>
+          <textarea class="ta" rows="2" placeholder="Les trois causes sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">3</span>
+          <p class="consigne">Pourquoi les forêts sont-elles indispensables ? Donne deux raisons tirées du texte.</p>
+          <textarea class="ta" rows="3" placeholder="Les forêts sont indispensables parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">4</span>
+          <p class="consigne">Quel est le rôle de Greenpeace selon le texte ?</p>
+          <textarea class="ta" rows="2" placeholder="Greenpeace…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">5</span>
+          <p class="consigne">Relève dans le texte un mot de la même famille que <em>forêt</em>.</p>
+          <div class="fill-row"><input class="dash lg" type="text" placeholder="Le mot est…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">6</span>
+          <p class="consigne">Ce texte a une visée <em>informative</em>. Vrai ou faux ? Justifie en relevant un indice.</p>
+          <textarea class="ta" rows="2" placeholder="C'est… parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">7</span>
+          <p class="consigne">Que peut faire chaque citoyen pour aider selon le texte ? Et toi, que ferais-tu ?</p>
+          <textarea class="ta" rows="3" placeholder="Selon le texte… Moi, je…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LEXIQUE -->
+    <div class="card">
+      <div class="card-head h-lexique"><span class="ico">🗂️</span> Lexique</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-orange">1</span>
+          <p class="consigne">Classe ces mots dans le tableau selon qu'ils évoquent un <em>problème</em> ou une <em>solution</em>.</p>
+          <div class="cloud">
+            <span>la déforestation</span><span>le reboisement</span><span>la pollution</span>
+            <span>le recyclage</span><span>la sécheresse</span><span>les énergies renouvelables</span>
+            <span>l'inondation</span><span>la sensibilisation</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <div>
+              <div style="background:#fde8e8;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:#c1121f;margin-bottom:6px">⚠️ Problèmes</div>
+              <textarea class="ta" rows="4" placeholder="…"></textarea>
+            </div>
+            <div>
+              <div style="background:#e8f5e9;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:#1b6e3b;margin-bottom:6px">✅ Solutions</div>
+              <textarea class="ta" rows="4" placeholder="…"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">2</span>
+          <p class="consigne">Associe chaque mot à sa définition en écrivant la lettre correspondante.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div class="cloud" style="font-size:12.5px;line-height:2.2">
+              <div><strong>1.</strong> reboisement</div>
+              <div><strong>2.</strong> urbanisation</div>
+              <div><strong>3.</strong> biodiversité</div>
+              <div><strong>4.</strong> déforestation</div>
+            </div>
+            <div class="cloud" style="font-size:12.5px;line-height:2.2">
+              <div><strong>a.</strong> variété des espèces vivantes</div>
+              <div><strong>b.</strong> destruction des forêts</div>
+              <div><strong>c.</strong> développement des villes</div>
+              <div><strong>d.</strong> replantation d'arbres</div>
+            </div>
+          </div>
+          <div class="fill-row"><span class="ph-txt">1 →</span><input class="dash sm" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">2 →</span><input class="dash sm" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">3 →</span><input class="dash sm" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">4 →</span><input class="dash sm" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">3</span>
+          <p class="consigne">Forme des mots de la même famille à partir des mots suivants.</p>
+          <div class="fill-row"><span class="ph-txt">• <em>protéger</em> →</span><input class="dash md" type="text" placeholder="nom :"><input class="dash md" type="text" placeholder="adjectif :"></div>
+          <div class="fill-row"><span class="ph-txt">• <em>polluer</em> →</span><input class="dash md" type="text" placeholder="nom :"><input class="dash md" type="text" placeholder="adjectif :"></div>
+          <div class="fill-row"><span class="ph-txt">• <em>écologie</em> →</span><input class="dash md" type="text" placeholder="adjectif :"><input class="dash md" type="text" placeholder="nom de personne :"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GRAMMAIRE -->
+    <div class="card">
+      <div class="card-head h-grammaire"><span class="ico">📐</span> Grammaire</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-blue">1</span>
+          <p class="consigne">Identifie la nature du complément souligné dans chaque phrase : <em>CCM</em> ou <em>complément d'agent</em>.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Les arbres sont abattus <u>par des bûcherons</u>.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Elle milite <u>passionnément</u> pour l'environnement.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">La forêt est protégée <u>par la loi</u>.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">d.</span><span class="ph-txt">Les volontaires travaillent <u>avec enthousiasme</u>.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">2</span>
+          <p class="consigne">Transforme ces phrases passives en phrases actives.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Des milliers d'arbres sont plantés par les bénévoles chaque année.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix active…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">Le rapport sur la déforestation est publié par l'ONU.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix active…" style="margin-top:5px"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">3</span>
+          <p class="consigne">Réécris ces phrases en ajoutant un CCM de manière.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Les scientifiques observent la forêt.</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">Les enfants participent à la campagne de reboisement.</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">4</span>
+          <p class="consigne">Construis des phrases à la voix passive à partir de ces éléments.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">les forêts / menacer / les incendies</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">les espèces animales / protéger / les lois internationales</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CONJUGAISON -->
+    <div class="card">
+      <div class="card-head h-conjugaison"><span class="ico">🔄</span> Conjugaison</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-purple">1</span>
+          <p class="consigne">Conjugue le verbe <em>se mobiliser</em> au présent de l'indicatif.</p>
+          <div class="conj-grid">
+            <div class="fill-row"><span class="ph-txt">Je</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Tu</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Vous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Il / Elle</span><input class="dash md" type="text" place
