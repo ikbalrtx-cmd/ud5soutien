@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plateforme de Soutien – 5AP & 6AP | Prof Ikbal Ouaissa</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   SHARED VARIABLES & RESET
+═══════════════════════════════════════════ */
+:root {
+  --red:#c1121f; --red-lt:#e63946;
+  --blue:#1d3557; --blue-lt:#457b9d;
+  --orange:#b5440a; --orange-lt:#e76f51;
+  --purple:#6a0dad; --purple-lt:#9b5de5;
+  --violet:#5c2d91; --violet-lt:#7b5ea7;
+  --green:#1b6e3b; --green-lt:#40916c;
+  --gold:#e9a825;
+  --bg:#edf2f7; --white:#fff;
+  --shadow:0 3px 16px rgba(0,0,0,.10);
+  --r:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#1a1a2e;font-size:14px;line-height:1.6}
+
+/* ═══════════════════════════════════════════
+   SCREENS (welcome / 5AP / 6AP)
+═══════════════════════════════════════════ */
+.screen{display:none}
+.screen.active{display:block}
+
+/* ═══════════════════════════════════════════
+   SHARED HEADER
+═══════════════════════════════════════════ */
+.site-header{
+  color:#fff;text-align:center;padding:13px 20px 11px;
+  position:sticky;top:0;z-index:300;
+  box-shadow:0 4px 18px rgba(0,0,0,.22);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+}
+.site-header.home-hdr{background:linear-gradient(135deg,#0d1f3c 0%,#1a3a6e 100%)}
+.site-header.ap5-hdr {background:linear-gradient(135deg,#5c2d91 0%,#7b5ea7 100%)}
+.site-header.ap6-hdr {background:linear-gradient(135deg,#1d3557 0%,#457b9d 100%)}
+
+.hdr-center{text-align:center;flex:1}
+.hdr-center .pill{
+  display:inline-block;
+  font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  padding:3px 14px;border-radius:20px;margin-bottom:4px;
+}
+.home-pill{background:var(--orange-lt)}
+.ap5-pill {background:var(--violet)}
+.ap6-pill {background:var(--red)}
+.hdr-center h1{font-size:clamp(13px,2.6vw,19px);font-weight:900}
+.hdr-center p{font-size:11px;opacity:.75;margin-top:2px}
+
+.back-btn{
+  background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);
+  color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;
+  font-size:12px;padding:7px 14px;border-radius:8px;cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.back-btn:hover{background:rgba(255,255,255,0.25)}
+
+/* ═══════════════════════════════════════════
+   WELCOME PAGE
+═══════════════════════════════════════════ */
+.welcome-wrap{max-width:800px;margin:0 auto;padding:30px 16px 60px}
+
+/* Hero */
+.hero{
+  background:linear-gradient(135deg,#0d1f3c,#1a3a6e);
+  border-radius:20px;padding:40px 30px;text-align:center;
+  color:#fff;margin-bottom:28px;
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,0.18);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+.hero-top-stripe{position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#e63946,#f4a261,#e63946)}
+.hero-icon{font-size:52px;margin-bottom:14px;position:relative;z-index:1}
+.hero h2{
+  font-size:clamp(20px,4vw,30px);font-weight:900;
+  margin-bottom:8px;position:relative;z-index:1;
+}
+.hero-sub{
+  font-size:13px;opacity:.78;max-width:480px;margin:0 auto 18px;
+  line-height:1.7;position:relative;z-index:1;
+}
+.hero-ar{
+  font-family:'Tajawal',sans-serif;direction:rtl;
+  font-size:15px;font-weight:700;opacity:.88;
+  background:rgba(255,255,255,0.07);border-radius:10px;
+  padding:10px 18px;display:inline-block;
+  position:relative;z-index:1;margin-top:6px;
+}
+
+/* Objectives */
+.objectives{
+  background:var(--white);border-radius:var(--r);
+  padding:22px 24px;margin-bottom:24px;
+  box-shadow:var(--shadow);
+}
+.objectives h3{
+  font-size:15px;font-weight:800;color:var(--blue);
+  margin-bottom:16px;display:flex;align-items:center;gap:8px;
+}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.obj-item{
+  background:#f8fafc;border-radius:10px;
+  padding:12px 15px;border-left:4px solid;
+  font-size:12.5px;font-weight:600;color:#333;line-height:1.5;
+}
+.obj-item .obj-ico{font-size:20px;margin-bottom:5px;display:block}
+.obj-item.c1{border-color:var(--green-lt)}
+.obj-item.c2{border-color:var(--blue-lt)}
+.obj-item.c3{border-color:var(--orange-lt)}
+.obj-item.c4{border-color:var(--purple-lt)}
+.obj-item.c5{border-color:var(--red-lt)}
+.obj-item.c6{border-color:var(--gold)}
+
+/* Disciplines strip */
+.disciplines{
+  display:flex;flex-wrap:wrap;gap:8px;
+  justify-content:center;margin-bottom:28px;
+}
+.disc-pill{
+  background:var(--white);border-radius:20px;
+  padding:6px 14px;font-size:12px;font-weight:700;
+  box-shadow:var(--shadow);color:#555;
+  border:1.5px solid #e0e5ec;
+}
+
+/* Level cards */
+.level-title{
+  text-align:center;font-size:18px;font-weight:900;
+  color:var(--blue);margin-bottom:18px;
+}
+.level-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:30px}
+
+.level-card{
+  border-radius:18px;overflow:hidden;cursor:pointer;
+  box-shadow:0 6px 28px rgba(0,0,0,0.13);
+  transition:transform .25s, box-shadow .25s;
+  border:none;background:none;width:100%;text-align:left;
+}
+.level-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,0.18)}
+
+.lc-top{padding:28px 24px 22px;color:#fff;position:relative;overflow:hidden}
+.lc-top::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
+.lc-5{background:linear-gradient(135deg,#5c2d91,#9b5de5)}
+.lc-6{background:linear-gradient(135deg,#1d3557,#457b9d)}
+.lc-badge{
+  display:inline-block;font-size:10px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:3px 12px;border-radius:20px;margin-bottom:10px;
+  position:relative;z-index:1;
+}
+.lc-5 .lc-badge{background:rgba(255,255,255,0.25)}
+.lc-6 .lc-badge{background:var(--red)}
+.lc-emoji{font-size:44px;display:block;margin-bottom:8px;position:relative;z-index:1}
+.lc-title{font-size:22px;font-weight:900;position:relative;z-index:1}
+.lc-desc{font-size:12px;opacity:.8;position:relative;z-index:1;margin-top:4px}
+
+.lc-bottom{background:var(--white);padding:16px 20px}
+.lc-theme{font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.lc-tags{display:flex;flex-wrap:wrap;gap:5px}
+.lc-tag{background:#f0f4f8;border-radius:6px;padding:3px 9px;font-size:11px;font-weight:600;color:#555}
+.lc-arrow{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:12px;padding-top:10px;border-top:1px solid #eee;
+  font-size:12px;font-weight:800;
+}
+.lc-5 ~ * .lc-arrow-txt, .lc-arrow-5{color:var(--violet)}
+.lc-arrow-6{color:var(--blue)}
+.lc-arrow-icon{font-size:18px}
+
+/* Notice bilingual */
+.welcome-notice{
+  background:#fffbea;border-radius:12px;
+  padding:14px 18px;margin-bottom:0;
+  border-left:4px solid var(--gold);
+  box-shadow:var(--shadow);font-size:12.5px;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+}
+.wn-fr{color:#444;line-height:1.6}
+.wn-ar{direction:rtl;text-align:right;font-family:'Tajawal',sans-serif;font-size:14px;color:#444;line-height:1.7}
+.wn-label{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--orange-lt);display:block;margin-bottom:3px}
+
+/* ═══════════════════════════════════════════
+   SHARED EXERCISE STYLES
+═══════════════════════════════════════════ */
+.wrap{max-width:860px;margin:0 auto;padding:20px 14px 50px}
+
+.student-bar{background:var(--white);border-radius:var(--r);padding:14px 18px;margin-bottom:18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.student-bar label{font-weight:800;font-size:13px;white-space:nowrap}
+.student-bar input{flex:1;min-width:180px;border:2px solid #d0d7de;border-radius:8px;padding:8px 12px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;outline:none;transition:border-color .2s}
+
+.notice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.notice-fr,.notice-ar{background:#fffbea;border-radius:10px;padding:11px 15px;box-shadow:var(--shadow);font-size:12.5px}
+.notice-fr{border-left:4px solid var(--gold)}
+.notice-ar{border-right:4px solid var(--gold);direction:rtl;text-align:right;font-family:'Tajawal',sans-serif;font-size:13.5px}
+.notice-fr strong,.notice-ar strong{display:block;color:var(--orange-lt);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+
+.tabs{display:flex;gap:10px;margin-bottom:24px}
+.tab{flex:1;padding:12px 8px;border:none;border-radius:10px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;background:var(--white);color:#9aa;box-shadow:var(--shadow);transition:all .22s}
+.tab:not(.on):hover{background:#f0f4f8}
+
+/* 5AP tabs */
+#screen-5ap .tab.on{background:linear-gradient(135deg,#5c2d91,#3d1a6e);color:#fff;transform:translateY(-2px);box-shadow:0 6px 22px rgba(92,45,145,.32)}
+#screen-5ap .tab:not(.on):hover{color:var(--violet)}
+/* 6AP tabs */
+#screen-6ap .tab.on{background:linear-gradient(135deg,var(--red),#9b0a14);color:#fff;transform:translateY(-2px);box-shadow:0 6px 22px rgba(193,18,31,.32)}
+#screen-6ap .tab:not(.on):hover{color:var(--blue)}
+
+.panel{display:none}.panel.on{display:block}
+
+.card{background:var(--white);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+.card-head{display:flex;align-items:center;gap:9px;padding:12px 18px;color:#fff;font-size:13px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.card-head .ico{font-size:17px}
+.h-lecture    {background:linear-gradient(90deg,#1b6e3b,#40916c)}
+.h-lexique    {background:linear-gradient(90deg,#8b3a0a,#e76f51)}
+.h-grammaire  {background:linear-gradient(90deg,#1d3557,#457b9d)}
+.h-conjugaison{background:linear-gradient(90deg,#5c2d91,#7b5ea7)}
+.h-ortho      {background:linear-gradient(90deg,#7a0000,#e63946)}
+.h-production {background:linear-gradient(90deg,#5a0000,#c1121f)}
+.card-body{padding:16px 18px}
+
+.ex{margin-bottom:16px;padding-bottom:14px;border-bottom:1px dashed #dde2ea}
+.ex:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.ex-num{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 10px;border-radius:20px;color:#fff;margin-bottom:6px}
+.n-green{background:var(--green)}.n-orange{background:var(--orange)}.n-blue{background:var(--blue)}
+.n-purple{background:var(--violet)}.n-red{background:var(--red)}
+
+.consigne{font-size:13px;font-weight:700;margin-bottom:9px;color:#111;line-height:1.55}
+.consigne em{font-style:italic;font-weight:800}
+
+.cloud{background:#f3f6fa;border-radius:8px;padding:9px 13px;margin-bottom:10px;line-height:2}
+.cloud span{display:inline-block;background:#fff;border:1px solid #d5dbe5;border-radius:6px;padding:1px 9px;margin:2px 3px;font-weight:600;font-size:13px;color:#222}
+
+.fill-row{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.f-lbl{font-size:13px;font-weight:600;color:#444;min-width:100px}
+input.dash{border:none;border-bottom:2px solid #b0bec5;outline:none;background:transparent;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;padding:2px 5px;transition:border-color .2s}
+input.dash:focus{border-bottom-color:var(--red)}
+input.dash.sm{width:80px}
+input.dash.md{width:150px}
+input.dash.lg{width:220px}
+
+.ph-row{display:flex;align-items:baseline;gap:7px;margin-bottom:8px;flex-wrap:wrap}
+.ph-let{font-weight:900;font-size:13px;min-width:20px;color:var(--red)}
+.ph-let.bl{color:var(--blue)}.ph-let.pu{color:var(--violet)}.ph-let.gr{color:var(--green)}.ph-let.or{color:var(--orange)}
+.ph-txt{font-size:13px;font-weight:500;color:#555}
+
+textarea.ta{width:100%;border:2px solid #d5dbe5;border-radius:8px;padding:9px 12px;resize:vertical;min-height:65px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;outline:none;background:#fafbfc;transition:border-color .2s}
+
+.reading-txt{background:#f0f7f4;border-left:4px solid var(--green);border-radius:9px;padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.85;color:#333}
+.reading-txt strong{color:var(--green);display:block;margin-bottom:6px;font-size:13.5px}
+.reading-txt .note{font-size:11.5px;color:#777;margin-top:10px;border-top:1px dashed #ccc;padding-top:8px}
+
+.chk-row{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:500;margin-bottom:5px;color:#555}
+.chk-row input{width:15px;height:15px;accent-color:var(--orange-lt);cursor:pointer}
+
+.grille{background:#fff8e1;border-radius:9px;padding:12px 15px;margin-top:12px}
+.grille-title{font-size:11px;font-weight:900;color:var(--orange-lt);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.conj-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:6px}
+
+table.ex-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}
+table.ex-table th{background:#e8edf5;color:var(--blue);font-weight:800;padding:7px 10px;border:1px solid #d0d7de;text-align:left}
+table.ex-table td{border:1px solid #d0d7de;padding:6px 10px;vertical-align:top}
+table.ex-table td input.dash{width:100%}
+
+.arrow-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.arrow-word{background:#fff3e0;border:1.5px solid var(--orange-lt);border-radius:8px;padding:4px 12px;font-weight:700;font-size:13px;color:var(--orange);white-space:nowrap}
+.arrow{color:#aaa;font-size:16px}
+
+/* 5AP inputs violet, 6AP blue */
+#screen-5ap input.dash{color:var(--violet)}
+#screen-5ap textarea.ta{color:var(--violet)}
+#screen-5ap textarea.ta:focus{border-color:var(--violet-lt)}
+#screen-5ap .student-bar label{color:var(--violet)}
+#screen-5ap .student-bar input{color:var(--violet)}
+#screen-5ap .student-bar input:focus{border-color:var(--violet-lt)}
+#screen-6ap input.dash{color:var(--blue)}
+#screen-6ap textarea.ta{color:var(--blue)}
+#screen-6ap textarea.ta:focus{border-color:var(--blue-lt)}
+#screen-6ap .student-bar label{color:var(--blue)}
+#screen-6ap .student-bar input{color:var(--blue)}
+#screen-6ap .student-bar input:focus{border-color:var(--blue-lt)}
+
+/* FOOTER */
+footer{color:#fff;text-align:center;padding:14px 20px;font-size:11.5px;line-height:1.9}
+.footer-home{background:linear-gradient(135deg,#0d1f3c,#1a3a6e)}
+.footer-5ap {background:linear-gradient(135deg,#5c2d91,#7b5ea7)}
+.footer-6ap {background:linear-gradient(135deg,#1d3557,#457b9d)}
+footer strong{color:#f4a261;font-weight:800}
+footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#a8d8ea;display:block;margin-top:3px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .notice,.welcome-notice{grid-template-columns:1fr}
+  .two-col,.conj-grid,.level-cards,.obj-grid{grid-template-columns:1fr}
+  .student-bar{flex-direction:column}
+  .student-bar input{min-width:unset;width:100%}
+  .f-lbl{min-width:unset}
+  input.dash.lg{width:100%;max-width:300px}
+  .site-header{padding:10px 14px 8px}
+  .back-btn{font-size:11px;padding:5px 10px}
+}
+@media print{
+  .site-header{position:static}.tabs,.tab,.back-btn{display:none}
+  .panel{display:block!important;page-break-after:always}
+  body{background:#fff}
+  .screen{display:block!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SCREEN 0 – WELCOME
+══════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+
+  <header class="site-header home-hdr">
+    <div style="width:80px"></div>
+    <div class="hdr-center">
+      <div class="pill home-pill">🏫 Plateforme Pédagogique</div>
+      <h1>Soutien et Consolidation</h1>
+      <p>Cycle Primaire · Français · S.S Kariat Arkmane</p>
+    </div>
+    <div style="width:80px"></div>
+  </header>
+
+  <div class="welcome-wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-top-stripe"></div>
+      <div class="hero-icon">📚</div>
+      <h2>Bienvenue sur votre espace d'apprentissage</h2>
+      <p class="hero-sub">Une plateforme interactive dédiée aux exercices de <strong>soutien et de consolidation</strong> en langue française pour les niveaux 5AP et 6AP.</p>
+      <div class="hero-ar">مرحباً بكم في منصة الدعم والتوطيد في اللغة الفرنسية — المستويان الخامس والسادس ابتدائي</div>
+    </div>
+
+    <!-- OBJECTIFS -->
+    <div class="objectives">
+      <h3>🎯 Objectifs pédagogiques</h3>
+      <div class="obj-grid">
+        <div class="obj-item c1"><span class="obj-ico">📖</span><strong>Lecture – Compréhension</strong><br>Lire, comprendre et analyser des textes variés à visée informative et narrative.</div>
+        <div class="obj-item c2"><span class="obj-ico">📐</span><strong>Grammaire</strong><br>Maîtriser les structures grammaticales : voix passive, CCM, compléments d'agent, déterminants.</div>
+        <div class="obj-item c3"><span class="obj-ico">🗂️</span><strong>Lexique</strong><br>Enrichir le vocabulaire thématique, identifier les champs lexicaux et les familles de mots.</div>
+        <div class="obj-item c4"><span class="obj-ico">🔄</span><strong>Conjugaison</strong><br>Conjuguer les verbes aux temps étudiés : futur proche, passé récent, impératif, présent.</div>
+        <div class="obj-item c5"><span class="obj-ico">✏️</span><strong>Orthographe</strong><br>Consolider les règles orthographiques : homophones, pluriels, accords et lettres muettes.</div>
+        <div class="obj-item c6"><span class="obj-ico">✍️</span><strong>Production de l'écrit</strong><br>Rédiger des textes cohérents et bien structurés selon différentes visées communicatives.</div>
+      </div>
+    </div>
+
+    <!-- DISCIPLINES STRIP -->
+    <div class="disciplines">
+      <span class="disc-pill">📖 Lecture</span>
+      <span class="disc-pill">🗂️ Lexique</span>
+      <span class="disc-pill">📐 Grammaire</span>
+      <span class="disc-pill">🔄 Conjugaison</span>
+      <span class="disc-pill">✏️ Orthographe</span>
+      <span class="disc-pill">✍️ Production de l'écrit</span>
+    </div>
+
+    <!-- LEVEL CHOICE -->
+    <p class="level-title">Choisissez votre niveau scolaire</p>
+    <div class="level-cards">
+
+      <!-- 5AP -->
+      <button class="level-card" onclick="goLevel('5ap')">
+        <div class="lc-top lc-5">
+          <div class="lc-badge">Niveau</div>
+          <span class="lc-emoji">🌊</span>
+          <div class="lc-title">5 AP</div>
+          <div class="lc-desc">Cinquième Année Primaire</div>
+        </div>
+        <div class="lc-bottom">
+          <div class="lc-theme">Thème principal</div>
+          <div class="lc-tags">
+            <span class="lc-tag">Le monde des océans</span>
+            <span class="lc-tag">La mer</span>
+            <span class="lc-tag">L'espace</span>
+          </div>
+          <div class="lc-arrow">
+            <span style="color:var(--violet);font-weight:800">Accéder aux exercices</span>
+            <span class="lc-arrow-icon">→</span>
+          </div>
+        </div>
+      </button>
+
+      <!-- 6AP -->
+      <button class="level-card" onclick="goLevel('6ap')">
+        <div class="lc-top lc-6">
+          <div class="lc-badge">Niveau</div>
+          <span class="lc-emoji">🌍</span>
+          <div class="lc-title">6 AP</div>
+          <div class="lc-desc">Sixième Année Primaire</div>
+        </div>
+        <div class="lc-bottom">
+          <div class="lc-theme">Thème principal</div>
+          <div class="lc-tags">
+            <span class="lc-tag">Défis contemporains</span>
+            <span class="lc-tag">Environnement</span>
+            <span class="lc-tag">Énergie</span>
+          </div>
+          <div class="lc-arrow">
+            <span style="color:var(--blue);font-weight:800">Accéder aux exercices</span>
+            <span class="lc-arrow-icon">→</span>
+          </div>
+        </div>
+      </button>
+
+    </div>
+
+    <!-- BILINGUAL NOTICE -->
+    <div class="welcome-notice">
+      <div class="wn-fr">
+        <span class="wn-label">📌 Consigne générale</span>
+        Réponds directement dans la page interactive, puis recopie tes réponses dans ton <strong>cahier de soutien</strong>. 3 séries d'exercices progressifs t'attendent !
+      </div>
+      <div class="wn-ar">
+        <span class="wn-label">📌 تعليمة عامة</span>
+        أجب مباشرةً في الصفحة التفاعلية، ثم انقل إجاباتك إلى <strong>كراس الدعم</strong>. تنتظرك 3 سلاسل من التمارين التدرجية !
+      </div>
+    </div>
+
+  </div><!-- /welcome-wrap -->
+
+  <footer class="footer-home">
+    Élaborée par <strong>Prof : Ikbal Ouaissa</strong> &nbsp;|&nbsp; S.S Kariat Arkmane &nbsp;|&nbsp; Direction Provinciale : Nador – L'Oriental
+    <span class="ar">أعدّه الأستاذ : <strong>إقبال وعيسى</strong> — مجموعة مدارس قرية أركمان — المديرية الإقليمية : الناظور — الشرق</span>
+  </footer>
+
+</div><!-- /screen-home -->
+
+<!-- ══════════════════════════════════════════
+     SCREEN 1 – 5AP
+══════════════════════════════════════════ -->
+<div id="screen-5ap" class="screen">
+
+  <header class="site-header ap5-hdr">
+    <button class="back-btn" onclick="goHome()">← Accueil</button>
+    <div class="hdr-center">
+      <div class="pill ap5-pill">📚 Niveau 5AP</div>
+      <h1>Exercices de Soutien et de Consolidation</h1>
+      <p>Lecture · Lexique · Grammaire · Conjugaison · Orthographe · Production de l'écrit</p>
+    </div>
+    <div style="width:110px"></div>
+  </header>
+
+  <div class="wrap">
+
+
+  <div class="student-bar">
+    <label>👤 Nom et Prénom de l'élève :</label>
+    <input type="text" placeholder="Écris ton prénom et ton nom ici…">
+  </div>
+
+  <div class="notice">
+    <div class="notice-fr">
+      <strong>📌 Consigne</strong>
+      Réponds directement dans cette page, puis recopie tes réponses dans ton <strong>cahier de soutien</strong>. Choisis ta série et travaille avec soin !
+    </div>
+    <div class="notice-ar">
+      <strong>📌 تعليمة</strong>
+      أجب مباشرةً في هذه الصفحة، ثم انقل إجاباتك في <strong>كراس الدعم</strong>. اختر السلسلة واعمل بجدية !
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="show5(1,this)">📘 Série 1</button>
+    <button class="tab"    onclick="show5(2,this)">📗 Série 2</button>
+    <button class="tab"    onclick="show5(3,this)">📙 Série 3</button>
+  </div>
+
+  <!-- ══════════ SÉRIE 1 — basée sur les images du manuel ══════════ -->
+  <div class="panel on" id="ap5-p1">
+
+    <!-- LECTURE -->
+    <div class="card">
+      <div class="card-head h-lecture"><span class="ico">📖</span> Lecture – Compréhension</div>
+      <div class="card-body">
+        <div class="reading-txt">
+          <strong>Le monde des océans — Naufrage en mer</strong>
+          Un brouillard épais couvre la mer. Harvey, le capitaine du « Normandy », conduit lentement et avec beaucoup de prudence son grand bateau vers l'île de Guernesey. Tout à coup, cent mètres devant lui, il aperçoit une ombre qui grossit très vite. C'est un autre bateau chargé de cinq cents tonnes de blé, et lancé à toute vitesse. Trop tard ! C'est le choc ! La secousse est terrible. Le Normandy a le ventre ouvert, l'eau entre partout : dans la salle des machines, dans les cabines.<br><br>
+          Sans perdre un instant, les passagers montent sur le pont : Hommes, femmes, enfants, demi-nus, courent, crient, pleurent.<br><br>
+          Le capitaine est debout, à l'avant du bateau.<br>
+          « Silence ! crie-t-il. Attention ! Mettez les canots à la mer ; les femmes d'abord avec les enfants ; les hommes ensuite, et l'équipage après. Il y a soixante personnes à sauver. »<br><br>
+          En réalité, nous sommes soixante-et-un. Mais le capitaine ne pense pas à lui. Il s'occupe de tout et de tous !<br>
+          « Sauvez Clément ! crie-t-il encore. Faites vite, le bateau s'enfonce ! » Clément, c'est le mousse ; c'est encore un enfant.<br><br>
+          Au bout de vingt minutes, tout le monde est sauvé.<br>
+          <em>Jean-Marc Hovasse, Victor Hugo, Pendant l'exil 1851-1864, Tome II, © Librairie Arthème Fayard, 2008.</em>
+          <div class="note">
+            <strong>Notes :</strong> ¹ pont : plancher qui recouvre la coque d'un bateau &nbsp;|&nbsp; ² canot : petit bateau à rame ou à moteur &nbsp;|&nbsp; ³ mousse : jeune garçon qui fait l'apprentissage du métier de marin.
+          </div>
+        </div>
+
+        <div class="ex">
+          <span class="ex-num n-green">1</span>
+          <p class="consigne">Où se passe la scène ?</p>
+          <textarea class="ta" rows="2" placeholder="La scène se passe…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">2</span>
+          <p class="consigne">Que peut être l'ombre aperçue par le capitaine ?</p>
+          <textarea class="ta" rows="2" placeholder="L'ombre peut être…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">3</span>
+          <p class="consigne">Quelles sont les trois causes de l'accident qui s'est produit en mer ?</p>
+          <textarea class="ta" rows="3" placeholder="Les trois causes sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">4</span>
+          <p class="consigne">« Nous sommes soixante-et-un » — De qui peut-il s'agir à la première lecture ?</p>
+          <textarea class="ta" rows="2" placeholder="Il s'agit de…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">5</span>
+          <p class="consigne">Mets une croix dans la case qui correspond à la justification du sauvetage des personnes à bord.</p>
+          <table class="ex-table">
+            <tr>
+              <th>Personnes à bord</th>
+              <th>Capables de se prendre en charge</th>
+              <th>Responsables</th>
+              <th>Galanterie et besoin d'aide</th>
+            </tr>
+            <tr>
+              <td>Les femmes d'abord avec les enfants</td>
+              <td><input type="checkbox"></td>
+              <td><input type="checkbox"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+              <td>Les hommes ensuite</td>
+              <td><input type="checkbox"></td>
+              <td><input type="checkbox"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+              <td>Les membres de l'équipage après</td>
+              <td><input type="checkbox"></td>
+              <td><input type="checkbox"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEXIQUE -->
+    <div class="card">
+      <div class="card-head h-lexique"><span class="ico">🗂️</span> Lexique</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-orange">1</span>
+          <p class="consigne">Trouve le verbe qui correspond à la définition donnée.</p>
+          <div class="ph-row"><span class="ph-let or">a.</span><span class="ph-txt">C'est fixer un bateau à l'aide d'une amarre →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="ph-row"><span class="ph-let or">b.</span><span class="ph-txt">C'est faire un accostage →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="ph-row"><span class="ph-let or">c.</span><span class="ph-txt">C'est plonger une nouvelle fois dans l'eau →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="ph-row"><span class="ph-let or">d.</span><span class="ph-txt">C'est enlever la neige qui s'est accumulée →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="ph-row"><span class="ph-let or">e.</span><span class="ph-txt">C'est donner du courage à quelqu'un →</span><input class="dash lg" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">2</span>
+          <p class="consigne">Trouve le nom d'action en <em>-age</em>, <em>-ment</em>, <em>-tion</em>, <em>-ssion</em> ou <em>-sion</em> à partir de chaque verbe.</p>
+          <div class="arrow-row"><span class="arrow-word">écouter</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">construire</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">régler</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">arriver</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">discuter</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">comprendre</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAMMAIRE -->
+    <div class="card">
+      <div class="card-head h-grammaire"><span class="ico">📐</span> Grammaire</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-blue">1</span>
+          <p class="consigne">Complète chaque phrase avec un déterminant <em>démonstratif</em> ou <em>possessif</em>.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Je refuse de manger</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">moules : je ne sais pas d'où elles proviennent !</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Mamadou refuse de me prêter</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">palmes.</span></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">L'astronaute et</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">entraîneurs se dirigent vers la salle d'entraînement.</span></div>
+          <div class="ph-row"><span class="ph-let bl">d.</span><span class="ph-txt">Admirez</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">photos représentant notre galaxie !</span></div>
+          <div class="ph-row"><span class="ph-let bl">e.</span><span class="ph-txt">Lahcen et</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">amis ont visité une station météorologique.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">2</span>
+          <p class="consigne">Complète avec la conjonction de coordination qui convient.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Voyager en avion, c'est merveilleux</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">j'ai peur.</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Quel poisson préfères-tu ? Le merlan</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">la sole ?</span></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">La foudre tombe</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">le fracas du tonnerre emplit le ciel.</span></div>
+          <div class="ph-row"><span class="ph-let bl">d.</span><span class="ph-txt">L'un</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">l'autre</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">il est prudent.</span></div>
+          <div class="ph-row"><span class="ph-let bl">e.</span><span class="ph-txt">Le capitaine du Normandy avance lentement</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">il est prudent.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONJUGAISON -->
+    <div class="card">
+      <div class="card-head h-conjugaison"><span class="ico">🔄</span> Conjugaison</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-purple">1</span>
+          <p class="consigne">Conjugue au <em>futur proche</em> les verbes entre parenthèses : <em>parcourir, ramasser, fouler</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(parcourir)"><span class="ph-txt">des moules au bord de la mer.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">Regarde, Neil Armstrong</span><input class="dash md" type="text" placeholder="(fouler)"><span class="ph-txt">le sol de la Lune !</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Vous</span><input class="dash md" type="text" placeholder="(ramasser)"><span class="ph-txt">la comiche par ce temps de froid ?</span></div>
+          <div class="ph-row"><span class="ph-let pu">d.</span><span class="ph-txt">Mon voisin</span><input class="dash md" type="text" placeholder="(atterrir)"><span class="ph-txt">à l'aéroport Mohammed V.</span></div>
+          <div class="ph-row"><span class="ph-let pu">e.</span><span class="ph-txt">Trois avions</span><input class="dash md" type="text" placeholder="(rendre visite)"><span class="ph-txt">à son grand-père.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">2</span>
+          <p class="consigne">Conjugue au <em>passé récent</em> les verbes <em>accompagner, atterrir et rendre visite</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(accompagner)"><span class="ph-txt">des moules au bord de la mer.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">Trois avions</span><input class="dash md" type="text" placeholder="(atterrir)"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Mon frère à Tanger Med</span><input class="dash md" type="text" placeholder="(rendre visite)"><span class="ph-txt">à son grand-père.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">3</span>
+          <p class="consigne">Conjugue les verbes entre parenthèses à <em>l'impératif présent</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(ouvrir)"><span class="ph-txt">toutes les fenêtres, s'il te plaît.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">Soyons nombreux,</span><input class="dash md" type="text" placeholder="(s'inscrire)"><span class="ph-txt">au club de natation.</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Vous</span><input class="dash md" type="text" placeholder="(faire)"><span class="ph-txt">toujours du bien autour de vous !</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORTHOGRAPHE -->
+    <div class="card">
+      <div class="card-head h-ortho"><span class="ico">✏️</span> Orthographe</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Réécris les lettres muettes qui manquent.</p>
+          <div style="background:#fff8f0;border-left:3px solid var(--orange-lt);border-radius:8px;padding:12px 15px;font-size:13px;line-height:2.2;margin-bottom:8px">
+            Que doi<input class="dash sm" type="text" placeholder="…">-tu éviter de faire pendan<input class="dash sm" type="text" placeholder="…"> un orage ?<br>
+            Pour ne pas être frappé par la foudre, tu ne doi<input class="dash sm" type="text" placeholder="…"> pas rester debou<input class="dash sm" type="text" placeholder="…"> dans un cham<input class="dash sm" type="text" placeholder="…">,<br>
+            ni t'abriter sou<input class="dash sm" type="text" placeholder="…"> un arbre. Dan<input class="dash sm" type="text" placeholder="…"> une maison, il est déconseillé de couper le com<input class="dash sm" type="text" placeholder="…">teur.<br>
+            En ca<input class="dash sm" type="text" placeholder="…"> d'orage, mieu<input class="dash sm" type="text" placeholder="…"> vau<input class="dash sm" type="text" placeholder="…"> ne pas observer le ciel : la foudre peu<input class="dash sm" type="text" placeholder="…"> en effet toucher les yeu<input class="dash sm" type="text" placeholder="…">.<br>
+            les brûler et engendrer des lésion<input class="dash sm" type="text" placeholder="…">.
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Complète avec <em>leur</em> ou <em>leurs</em>.</p>
+          <p style="font-size:12.5px;color:#555;margin-bottom:10px;font-style:italic">La maman s'adresse à son mari :<br>– Zouhair, je pense qu'il va pleuvoir, appelle les enfants, il faut demander de venir ranger.</p>
+          <div class="ph-row"><span class="ph-txt">Ils ont laissé</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">ballon,</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">patins,</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">planche à roulettes,</span></div>
+          <div class="ph-row"><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">puzzles dans le jardin sous le ciel nuageux</span></div>
+          <div class="ph-row"><span class="ph-txt">et</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">bicyclettes.</span></div>
+          <div class="ph-row"><span class="ph-txt">– Très bien, je les appelle tout de suite et je</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">dis de mettre</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">jouets à l'abri.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTION -->
+    <div class="card">
+      <div class="card-head h-production"><span class="ico">✍️</span> Production de l'Écrit</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Écris un texte où tu expliques ce qui peut menacer un cours d'eau ou une plage dans ta région.</p>
+          <textarea class="ta" rows="9" placeholder="Rédige ton texte ici…"></textarea>
+          <div class="grille">
+            <div class="grille-title">🔍 Grille de lecture</div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai rédigé un texte de 7 lignes ou plus.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai utilisé le vocabulaire du thème.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai respecté la ponctuation et les majuscules.</label></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">À partir du texte produit, indique ce qu'il faut faire pour garder propre ce cours d'eau ou cette plage.</p>
+          <textarea class="ta" rows="7" placeholder="Pour garder propre ce lieu, il faut…"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /p1 -->
+
+  <!-- ══════════ SÉRIE 2 ══════════ -->
+  <div class="panel" id="ap5-p2">
+
+    <!-- LECTURE -->
+    <div class="card">
+      <div class="card-head h-lecture"><span class="ico">📖</span> Lecture – Compréhension</div>
+      <div class="card-body">
+        <div class="reading-txt">
+          <strong>La tempête en mer</strong>
+          Ce soir-là, le vent soufflait très fort sur la côte. Les vagues étaient immenses, elles frappaient les rochers avec une violence terrible. À bord du chalutier « L'Étoile du Nord », le capitaine Armand observait le ciel avec inquiétude. Ses sept matelots s'activaient sur le pont, tentant de sécuriser les filets et le matériel. Soudain, une énorme vague s'abattit sur le bateau et emporta deux hommes par-dessus bord. Sans perdre une seconde, le capitaine lança les bouées de sauvetage et demanda des secours par radio. Les garde-côtes arrivèrent rapidement et purent repêcher les deux marins, épuisés mais sains et saufs. Le capitaine Armand prit alors la décision de rentrer au port immédiatement. « La mer ne pardonne pas l'imprudence », dit-il à son équipage.
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">1</span>
+          <p class="consigne">Quel est le nom du bateau et de son capitaine ?</p>
+          <textarea class="ta" rows="2" placeholder="Le bateau s'appelle… Le capitaine est…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">2</span>
+          <p class="consigne">Que s'est-il passé à cause de l'énorme vague ?</p>
+          <textarea class="ta" rows="2" placeholder="L'énorme vague a…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">3</span>
+          <p class="consigne">Quelles actions le capitaine a-t-il prises pour sauver ses hommes ?</p>
+          <textarea class="ta" rows="3" placeholder="Le capitaine a…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">4</span>
+          <p class="consigne">Explique la phrase : <em>« La mer ne pardonne pas l'imprudence »</em>.</p>
+          <textarea class="ta" rows="3" placeholder="Cette phrase signifie que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">5</span>
+          <p class="consigne">Ce texte est-il <em>narratif</em> ou <em>informatif</em> ? Justifie avec un exemple du texte.</p>
+          <textarea class="ta" rows="2" placeholder="Ce texte est… parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">6</span>
+          <p class="consigne">Relève dans le texte deux mots appartenant au champ lexical de la mer.</p>
+          <textarea class="ta" rows="2" placeholder="Les deux mots sont…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEXIQUE -->
+    <div class="card">
+      <div class="card-head h-lexique"><span class="ico">🗂️</span> Lexique</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-orange">1</span>
+          <p class="consigne">Trouve le nom d'action correspondant à chaque verbe.</p>
+          <div class="arrow-row"><span class="arrow-word">naviguer</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">sauver</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">observer</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">protéger</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">embarquer</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">2</span>
+          <p class="consigne">Associe chaque mot à sa définition.</p>
+          <div class="two-col" style="margin-bottom:10px">
+            <div class="cloud" style="font-size:12.5px;line-height:2.4">
+              <div><strong>1.</strong> chalutier</div>
+              <div><strong>2.</strong> matelot</div>
+              <div><strong>3.</strong> bouée</div>
+              <div><strong>4.</strong> garde-côte</div>
+            </div>
+            <div class="cloud" style="font-size:12.5px;line-height:2.4">
+              <div><strong>a.</strong> bateau de pêche qui tire un filet</div>
+              <div><strong>b.</strong> objet flottant pour se sauver</div>
+              <div><strong>c.</strong> marin qui surveille les côtes</div>
+              <div><strong>d.</strong> membre de l'équipage d'un navire</div>
+            </div>
+          </div>
+          <div class="fill-row"><span class="ph-txt">1 →</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">&nbsp;&nbsp;2 →</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">&nbsp;&nbsp;3 →</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">&nbsp;&nbsp;4 →</span><input class="dash sm" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">3</span>
+          <p class="consigne">Donne un synonyme pour chaque mot.</p>
+          <div class="fill-row"><span class="ph-txt">a. <em>immense</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">b. <em>inquiétude</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">c. <em>sécuriser</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAMMAIRE -->
+    <div class="card">
+      <div class="card-head h-grammaire"><span class="ico">📐</span> Grammaire</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-blue">1</span>
+          <p class="consigne">Souligne le déterminant et indique s'il est <em>démonstratif</em> ou <em>possessif</em>.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Ce soir-là, le vent soufflait très fort.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Le capitaine Armand observait son équipage.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">Ces vagues étaient immenses et violentes.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">d.</span><span class="ph-txt">Ses sept matelots s'activaient sur le pont.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">2</span>
+          <p class="consigne">Relie les deux phrases avec une conjonction de coordination (<em>mais, ou, et, donc, or, ni, car</em>).</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">La mer était agitée.</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">le capitaine est sorti.</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Il fait beau aujourd'hui.</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">nous irons à la plage.</span></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">Tu veux nager</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">te promener sur le port ?</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONJUGAISON -->
+    <div class="card">
+      <div class="card-head h-conjugaison"><span class="ico">🔄</span> Conjugaison</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-purple">1</span>
+          <p class="consigne">Mets les verbes au <em>futur proche</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Le capitaine</span><input class="dash md" type="text" placeholder="(rentrer)"><span class="ph-txt">au port ce soir.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(observer)"><span class="ph-txt">les dauphins depuis le bateau.</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Les matelots</span><input class="dash md" type="text" placeholder="(sécuriser)"><span class="ph-txt">les filets.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">2</span>
+          <p class="consigne">Mets les verbes au <em>passé récent</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Les garde-côtes</span><input class="dash md" type="text" placeholder="(arriver)"><span class="ph-txt">à temps.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">La vague</span><input class="dash md" type="text" placeholder="(emporter)"><span class="ph-txt">le matériel.</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(repêcher)"><span class="ph-txt">les deux marins.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">3</span>
+          <p class="consigne">Écris ces phrases à <em>l'impératif présent</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Tu dois lancer les bouées.</span></div>
+          <textarea class="ta" rows="2" placeholder="Impératif…" style="margin-top:4px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let pu">b.</span><span class="ph-txt">Nous devons rentrer au port.</span></div>
+          <textarea class="ta" rows="2" placeholder="Impératif…" style="margin-top:4px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORTHOGRAPHE -->
+    <div class="card">
+      <div class="card-head h-ortho"><span class="ico">✏️</span> Orthographe</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Complète avec <em>leur</em> ou <em>leurs</em>.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">Les matelots rangent</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">filets et</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">matériel.</span></div>
+          <div class="ph-row"><span class="ph-let">b.</span><span class="ph-txt">Le capitaine</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">a donné des ordres précis.</span></div>
+          <div class="ph-row"><span class="ph-let">c.</span><span class="ph-txt">Les deux marins ont retrouvé</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">familles saines et sauves.</span></div>
+          <div class="ph-row"><span class="ph-let">d.</span><span class="ph-txt">Je</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">ai dit de rentrer immédiatement.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Complète les mots en ajoutant les lettres muettes manquantes.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">Le ven</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">soufflai</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">très for</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let">b.</span><span class="ph-txt">Le marin es</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">puden</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">et courageu</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let">c.</span><span class="ph-txt">Le por</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">est gran</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">et profon</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTION -->
+    <div class="card">
+      <div class="card-head h-production"><span class="ico">✍️</span> Production de l'Écrit</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Écris un texte où tu décris un endroit naturel (mer, fleuve, lac ou montagne) que tu aimes et explique pourquoi il faut le protéger.</p>
+          <textarea class="ta" rows="9" placeholder="Rédige ton texte ici (7 lignes minimum)…"></textarea>
+          <div class="grille">
+            <div class="grille-title">🔍 Grille de lecture</div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai rédigé un texte de 7 lignes ou plus.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai utilisé le vocabulaire du thème.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai respecté la ponctuation et les majuscules.</label></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Imagine que tu es le capitaine Armand après la tempête. Écris ce que tu as ressenti et ce que tu dirais à ton équipage.</p>
+          <textarea class="ta" rows="7" placeholder="Raconte ici…"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /p2 -->
+
+  <!-- ══════════ SÉRIE 3 ══════════ -->
+  <div class="panel" id="ap5-p3">
+
+    <!-- LECTURE -->
+    <div class="card">
+      <div class="card-head h-lecture"><span class="ico">📖</span> Lecture – Compréhension</div>
+      <div class="card-body">
+        <div class="reading-txt">
+          <strong>L'océan Pacifique : le plus grand des océans</strong>
+          L'océan Pacifique est le plus grand et le plus profond des océans du monde. Il s'étend sur environ 165 millions de kilomètres carrés et couvre plus d'un tiers de la surface de la Terre. Sa profondeur maximale atteint 11 034 mètres dans la fosse des Mariannes, le point le plus bas de notre planète. Des milliers d'îles, comme Hawaii, la Polynésie ou les Philippines, se trouvent dans cet immense océan. L'océan Pacifique joue un rôle essentiel dans la régulation du climat mondial et abrite une biodiversité extraordinaire : baleines, dauphins, requins, tortues marines et des milliers d'espèces de poissons. Malheureusement, la pollution plastique et la surpêche menacent aujourd'hui cet écosystème fragile et précieux pour l'humanité.
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">1</span>
+          <p class="consigne">Quel est le sujet de ce texte ? Donne son titre et son thème.</p>
+          <textarea class="ta" rows="2" placeholder="Le texte parle de…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">2</span>
+          <p class="consigne">Quelle est la superficie et la profondeur maximale de l'océan Pacifique ?</p>
+          <textarea class="ta" rows="2" placeholder="Sa superficie est de… Sa profondeur est de…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">3</span>
+          <p class="consigne">Cite trois animaux marins qui vivent dans l'océan Pacifique.</p>
+          <textarea class="ta" rows="2" placeholder="Les trois animaux sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">4</span>
+          <p class="consigne">Quelles sont les deux menaces qui pèsent sur cet océan selon le texte ?</p>
+          <textarea class="ta" rows="2" placeholder="Les deux menaces sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">5</span>
+          <p class="consigne">Ce texte est-il <em>narratif</em>, <em>informatif</em> ou <em>descriptif</em> ? Justifie ta réponse.</p>
+          <textarea class="ta" rows="3" placeholder="Ce texte est… parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">6</span>
+          <p class="consigne">Relève deux mots de la même famille que <em>profond</em>.</p>
+          <textarea class="ta" rows="2" placeholder="Les deux mots sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">7</span>
+          <p class="consigne">Propose un geste écologique que tu ferais pour protéger les océans.</p>
+          <textarea class="ta" rows="2" placeholder="Je pourrais…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEXIQUE -->
+    <div class="card">
+      <div class="card-head h-lexique"><span class="ico">🗂️</span> Lexique</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-orange">1</span>
+          <p class="consigne">Trouve le nom d'action correspondant à chaque verbe.</p>
+          <div class="arrow-row"><span class="arrow-word">pêcher</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">polluer</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">explorer</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">naviguer</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="arrow-row"><span class="arrow-word">protéger</span><span class="arrow">→</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">2</span>
+          <p class="consigne">Classe ces mots dans la bonne colonne : <em>flore marine</em> ou <em>faune marine</em>.</p>
+          <div class="cloud">
+            <span>baleine</span><span>algue</span><span>dauphin</span><span>corail</span>
+            <span>requin</span><span>posidonie</span><span>tortue marine</span><span>varech</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <div>
+              <div style="background:#e8f5e9;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:var(--green);margin-bottom:6px">🌿 Flore marine</div>
+              <textarea class="ta" rows="3" placeholder="…"></textarea>
+            </div>
+            <div>
+              <div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:var(--blue);margin-bottom:6px">🐟 Faune marine</div>
+              <textarea class="ta" rows="3" placeholder="…"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">3</span>
+          <p class="consigne">Donne le contraire de chaque mot.</p>
+          <div class="fill-row"><span class="ph-txt">a. <em>profond</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">b. <em>fragile</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">c. <em>malheureusement</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAMMAIRE -->
+    <div class="card">
+      <div class="card-head h-grammaire"><span class="ico">📐</span> Grammaire</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-blue">1</span>
+          <p class="consigne">Remplace le déterminant souligné par un déterminant démonstratif ou possessif selon le sens.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt"><u>L'</u>océan Pacifique est le plus grand du monde. →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt"><u>Les</u> îles de Hawaii sont magnifiques. →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">Le chercheur présente <u>les</u> résultats. →</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">2</span>
+          <p class="consigne">Joins les deux phrases avec la conjonction de coordination qui convient.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">L'océan est beau.</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">il est en danger.</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Tu peux nager.</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">tu peux plonger.</span></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">La pollution augmente.</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">les espèces disparaissent.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">3</span>
+          <p class="consigne">Construis une phrase avec chacune de ces conjonctions : <em>mais</em>, <em>car</em>, <em>donc</em>.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">mais →</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:4px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let bl">b.</span><span class="ph-txt">car →</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:4px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let bl">c.</span><span class="ph-txt">donc →</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:4px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONJUGAISON -->
+    <div class="card">
+      <div class="card-head h-conjugaison"><span class="ico">🔄</span> Conjugaison</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-purple">1</span>
+          <p class="consigne">Conjugue les verbes au <em>futur proche</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Les scientifiques</span><input class="dash md" type="text" placeholder="(explorer)"><span class="ph-txt">la fosse des Mariannes.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(protéger)"><span class="ph-txt">les océans.</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Je</span><input class="dash md" type="text" placeholder="(visiter)"><span class="ph-txt">les îles Hawaii un jour.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">2</span>
+          <p class="consigne">Conjugue les verbes au <em>passé récent</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Les chercheurs</span><input class="dash md" type="text" placeholder="(découvrir)"><span class="ph-txt">une nouvelle espèce.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">Le bateau</span><input class="dash md" type="text" placeholder="(quitter)"><span class="ph-txt">le port.</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(apprendre)"><span class="ph-txt">des informations sur les océans.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">3</span>
+          <p class="consigne">Écris ces phrases à <em>l'impératif présent</em>.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Tu dois protéger les océans. →</span></div>
+          <textarea class="ta" rows="2" placeholder="Impératif…" style="margin-top:4px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let pu">b.</span><span class="ph-txt">Nous devons arrêter de polluer les mers. →</span></div>
+          <textarea class="ta" rows="2" placeholder="Impératif…" style="margin-top:4px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let pu">c.</span><span class="ph-txt">Vous devez découvrir les merveilles de la mer. →</span></div>
+          <textarea class="ta" rows="2" placeholder="Impératif…" style="margin-top:4px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORTHOGRAPHE -->
+    <div class="card">
+      <div class="card-head h-ortho"><span class="ico">✏️</span> Orthographe</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Complète avec <em>leur</em> ou <em>leurs</em>.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">Les baleines protègent</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">petits avec beaucoup de soin.</span></div>
+          <div class="ph-row"><span class="ph-let">b.</span><span class="ph-txt">Les marins ont raconté</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">aventures.</span></div>
+          <div class="ph-row"><span class="ph-let">c.</span><span class="ph-txt">Je</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">ai expliqué les dangers de la pollution.</span></div>
+          <div class="ph-row"><span class="ph-let">d.</span><span class="ph-txt">Les dauphins nagent avec</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">bébés.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Réécris ces phrases en ajoutant les lettres muettes manquantes.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt" style="color:#c1121f">L'océan es profon et gran.</span></div>
+          <textarea class="ta" rows="2" placeholder="Phrase corrigée…" style="margin-top:4px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">b.</span><span class="ph-txt" style="color:#c1121f">Le requin es un poisson dan et puis.</span></div>
+          <textarea class="ta" rows="2" placeholder="Phrase corrigée…" style="margin-top:4px"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">3</span>
+          <p class="consigne">Mets ces phrases au pluriel.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">Le marin courageux protège son bateau.</span></div>
+          <textarea class="ta" rows="2" placeholder="Au pluriel…" style="margin-top:4px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">b.</span><span class="ph-txt">La tortue marine pond son œuf sur la plage.</span></div>
+          <textarea class="ta" rows="2" placeholder="Au pluriel…" style="margin-top:4px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTION -->
+    <div class="card">
+      <div class="card-head h-production"><span class="ico">✍️</span> Production de l'Écrit</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Écris un texte <strong>informatif</strong> de 7 lignes minimum pour expliquer à tes camarades pourquoi il est important de protéger les océans et ce qu'il faut faire.</p>
+          <textarea class="ta" rows="10" placeholder="Titre : …&#10;&#10;Rédige ton texte ici…"></textarea>
+          <div class="grille">
+            <div class="grille-title">🔍 Grille de lecture</div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai rédigé un texte informatif de 7 lignes ou plus.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai utilisé le vocabulaire du thème (océan, pollution, espèces…).</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai respecté la ponctuation et les majuscules.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>Mes phrases sont correctes et bien construites.</label></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Tu as participé à une journée de nettoyage d'une plage avec ton école. Raconte cette expérience en décrivant ce que tu as fait et ce que tu as ressenti.</p>
+          <textarea class="ta" rows="9" placeholder="Raconte ton expérience ici…"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /p3 -->
+
+
+  </div>
+
+  <footer class="footer-5ap">
+    Élaborée par <strong>Prof : Ikbal Ouaissa</strong> &nbsp;|&nbsp; S.S Kariat Arkmane &nbsp;|&nbsp; Direction Provinciale : Nador – L'Oriental
+    <span class="ar">أعدّه الأستاذ : <strong>إقبال وعيسى</strong> — مجموعة مدارس قرية أركمان — المديرية الإقليمية : الناظور — الشرق</span>
+  </footer>
+
+</div><!-- /screen-5ap -->
+
+<!-- ══════════════════════════════════════════
+     SCREEN 2 – 6AP
+══════════════════════════════════════════ -->
+<div id="screen-6ap" class="screen">
+
+  <header class="site-header ap6-hdr">
+    <button class="back-btn" onclick="goHome()">← Accueil</button>
+    <div class="hdr-center">
+      <div class="pill ap6-pill">📚 Niveau 6AP</div>
+      <h1>Exercices de Soutien et de Consolidation</h1>
+      <p>Lecture · Lexique · Grammaire · Conjugaison · Orthographe · Production de l'écrit</p>
+    </div>
+    <div style="width:110px"></div>
+  </header>
+
+  <div class="wrap">
+
+
+  <!-- NOM -->
+  <div class="student-bar">
+    <label>👤 Nom et Prénom de l'élève :</label>
+    <input type="text" placeholder="Écris ton prénom et ton nom ici…">
+  </div>
+
+  <!-- NOTICE BILINGUE -->
+  <div class="notice">
+    <div class="notice-fr">
+      <strong>📌 Consigne</strong>
+      Réponds directement dans cette page, puis recopie tes réponses dans ton <strong>cahier de soutien</strong>. Choisis ta série et travaille avec soin !
+    </div>
+    <div class="notice-ar">
+      <strong>📌 تعليمة</strong>
+      أجب مباشرةً في هذه الصفحة، ثم انقل إجاباتك في <strong>كراس الدعم</strong>. اختر السلسلة واعمل بجدية !
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab on" onclick="show6(1,this)">📘 Série 1</button>
+    <button class="tab"    onclick="show6(2,this)">📗 Série 2</button>
+    <button class="tab"    onclick="show6(3,this)">📙 Série 3</button>
+  </div>
+
+  <!-- ══════════ SÉRIE 1 ══════════ -->
+  <div class="panel on" id="ap6-p1">
+
+    <!-- 1. LECTURE -->
+    <div class="card">
+      <div class="card-head h-lecture"><span class="ico">📖</span> Lecture – Compréhension</div>
+      <div class="card-body">
+        <div class="reading-txt">
+          <strong>La déforestation : une menace pour la planète</strong>
+          Chaque année, des millions d'hectares de forêts disparaissent à travers le monde. La déforestation est principalement causée par l'agriculture intensive, l'exploitation du bois et l'urbanisation. Les forêts jouent un rôle essentiel : elles produisent l'oxygène que nous respirons, abritent des milliers d'espèces animales et végétales, et régulent le climat de notre planète. La disparition des arbres accélère le réchauffement climatique et provoque des inondations, car les racines ne retiennent plus la terre. Des organisations environnementales, comme Greenpeace, mènent des campagnes de sensibilisation et de reboisement pour protéger ces précieux espaces naturels. Chaque citoyen peut agir à son niveau en soutenant ces initiatives ou en adoptant des gestes écologiques au quotidien.
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">1</span>
+          <p class="consigne">Quel est le titre du texte ? Quel est son thème principal ?</p>
+          <textarea class="ta" rows="2" placeholder="Le titre est… Le thème principal est…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">2</span>
+          <p class="consigne">Cite trois causes de la déforestation mentionnées dans le texte.</p>
+          <textarea class="ta" rows="2" placeholder="Les trois causes sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">3</span>
+          <p class="consigne">Pourquoi les forêts sont-elles indispensables ? Donne deux raisons tirées du texte.</p>
+          <textarea class="ta" rows="3" placeholder="Les forêts sont indispensables parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">4</span>
+          <p class="consigne">Quel est le rôle de Greenpeace selon le texte ?</p>
+          <textarea class="ta" rows="2" placeholder="Greenpeace…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">5</span>
+          <p class="consigne">Relève dans le texte un mot de la même famille que <em>forêt</em>.</p>
+          <div class="fill-row"><input class="dash lg" type="text" placeholder="Le mot est…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">6</span>
+          <p class="consigne">Ce texte a une visée <em>informative</em>. Vrai ou faux ? Justifie en relevant un indice.</p>
+          <textarea class="ta" rows="2" placeholder="C'est… parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">7</span>
+          <p class="consigne">Que peut faire chaque citoyen pour aider selon le texte ? Et toi, que ferais-tu ?</p>
+          <textarea class="ta" rows="3" placeholder="Selon le texte… Moi, je…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LEXIQUE -->
+    <div class="card">
+      <div class="card-head h-lexique"><span class="ico">🗂️</span> Lexique</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-orange">1</span>
+          <p class="consigne">Classe ces mots dans le tableau selon qu'ils évoquent un <em>problème</em> ou une <em>solution</em>.</p>
+          <div class="cloud">
+            <span>la déforestation</span><span>le reboisement</span><span>la pollution</span>
+            <span>le recyclage</span><span>la sécheresse</span><span>les énergies renouvelables</span>
+            <span>l'inondation</span><span>la sensibilisation</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <div>
+              <div style="background:#fde8e8;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:#c1121f;margin-bottom:6px">⚠️ Problèmes</div>
+              <textarea class="ta" rows="4" placeholder="…"></textarea>
+            </div>
+            <div>
+              <div style="background:#e8f5e9;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:#1b6e3b;margin-bottom:6px">✅ Solutions</div>
+              <textarea class="ta" rows="4" placeholder="…"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">2</span>
+          <p class="consigne">Associe chaque mot à sa définition en écrivant la lettre correspondante.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div class="cloud" style="font-size:12.5px;line-height:2.2">
+              <div><strong>1.</strong> reboisement</div>
+              <div><strong>2.</strong> urbanisation</div>
+              <div><strong>3.</strong> biodiversité</div>
+              <div><strong>4.</strong> déforestation</div>
+            </div>
+            <div class="cloud" style="font-size:12.5px;line-height:2.2">
+              <div><strong>a.</strong> variété des espèces vivantes</div>
+              <div><strong>b.</strong> destruction des forêts</div>
+              <div><strong>c.</strong> développement des villes</div>
+              <div><strong>d.</strong> replantation d'arbres</div>
+            </div>
+          </div>
+          <div class="fill-row"><span class="ph-txt">1 →</span><input class="dash sm" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">2 →</span><input class="dash sm" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">3 →</span><input class="dash sm" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">4 →</span><input class="dash sm" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">3</span>
+          <p class="consigne">Forme des mots de la même famille à partir des mots suivants.</p>
+          <div class="fill-row"><span class="ph-txt">• <em>protéger</em> →</span><input class="dash md" type="text" placeholder="nom :"><input class="dash md" type="text" placeholder="adjectif :"></div>
+          <div class="fill-row"><span class="ph-txt">• <em>polluer</em> →</span><input class="dash md" type="text" placeholder="nom :"><input class="dash md" type="text" placeholder="adjectif :"></div>
+          <div class="fill-row"><span class="ph-txt">• <em>écologie</em> →</span><input class="dash md" type="text" placeholder="adjectif :"><input class="dash md" type="text" placeholder="nom de personne :"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GRAMMAIRE -->
+    <div class="card">
+      <div class="card-head h-grammaire"><span class="ico">📐</span> Grammaire</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-blue">1</span>
+          <p class="consigne">Identifie la nature du complément souligné dans chaque phrase : <em>CCM</em> ou <em>complément d'agent</em>.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Les arbres sont abattus <u>par des bûcherons</u>.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Elle milite <u>passionnément</u> pour l'environnement.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">La forêt est protégée <u>par la loi</u>.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+          <div class="ph-row"><span class="ph-let bl">d.</span><span class="ph-txt">Les volontaires travaillent <u>avec enthousiasme</u>.</span><input class="dash md" type="text" placeholder="Nature : …"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">2</span>
+          <p class="consigne">Transforme ces phrases passives en phrases actives.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Des milliers d'arbres sont plantés par les bénévoles chaque année.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix active…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">Le rapport sur la déforestation est publié par l'ONU.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix active…" style="margin-top:5px"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">3</span>
+          <p class="consigne">Réécris ces phrases en ajoutant un CCM de manière.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Les scientifiques observent la forêt.</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">Les enfants participent à la campagne de reboisement.</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">4</span>
+          <p class="consigne">Construis des phrases à la voix passive à partir de ces éléments.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">les forêts / menacer / les incendies</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">les espèces animales / protéger / les lois internationales</span></div>
+          <textarea class="ta" rows="2" placeholder="…" style="margin-top:5px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CONJUGAISON -->
+    <div class="card">
+      <div class="card-head h-conjugaison"><span class="ico">🔄</span> Conjugaison</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-purple">1</span>
+          <p class="consigne">Conjugue le verbe <em>se mobiliser</em> au présent de l'indicatif.</p>
+          <div class="conj-grid">
+            <div class="fill-row"><span class="ph-txt">Je</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Tu</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Vous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Il / Elle</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Ils / Elles</span><input class="dash md" type="text" placeholder="…"></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">2</span>
+          <p class="consigne">Mets les verbes pronominaux entre parenthèses au passé composé.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Les bénévoles</span><input class="dash md" type="text" placeholder="(se réunir)"><span class="ph-txt">dans le parc.</span></div>
+          <div class="ph-row"><span class="ph-let pu">b.</span><span class="ph-txt">Elle</span><input class="dash md" type="text" placeholder="(s'engager)"><span class="ph-txt">dans l'association.</span></div>
+          <div class="ph-row"><span class="ph-let pu">c.</span><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="(se battre)"><span class="ph-txt">pour protéger la forêt.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">3</span>
+          <p class="consigne">Classe ces verbes en deux colonnes : <em>verbes pronominaux</em> / <em>non pronominaux</em>.</p>
+          <div class="cloud">
+            <span>se plaindre</span><span>courir</span><span>s'interroger</span>
+            <span>réussir</span><span>se souvenir</span><span>lire</span><span>se taire</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <div>
+              <div style="background:#f3e5ff;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:var(--purple);margin-bottom:6px">🔄 Pronominaux</div>
+              <textarea class="ta" rows="3" placeholder="…"></textarea>
+            </div>
+            <div>
+              <div style="background:#e8eaf6;border-radius:8px;padding:8px 12px;font-weight:700;font-size:12px;color:var(--blue);margin-bottom:6px">➡️ Non pronominaux</div>
+              <textarea class="ta" rows="3" placeholder="…"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ORTHOGRAPHE -->
+    <div class="card">
+      <div class="card-head h-ortho"><span class="ico">✏️</span> Orthographe</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Choisis le bon homonyme (<em>son / sont</em>, <em>on / ont</em>, <em>ou / où</em>) pour compléter les phrases.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">Les forêts</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">en danger depuis des décennies.</span></div>
+          <div class="ph-row"><span class="ph-let">b.</span><span class="ph-txt">Il range</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">matériel de jardinage.</span></div>
+          <div class="ph-row"><span class="ph-let">c.</span><span class="ph-txt">Tu habites à Paris</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">à Lyon ?</span></div>
+          <div class="ph-row"><span class="ph-let">d.</span><span class="ph-txt">Les bénévoles</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">planté cent arbres hier.</span></div>
+          <div class="ph-row"><span class="ph-let">e.</span><span class="ph-txt">Sais-tu</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">se trouvent les réserves naturelles ?</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Accorde correctement les adjectifs entre parenthèses.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">Des forêts</span><input class="dash md" type="text" placeholder="(tropical)"><span class="ph-txt">disparaissent.</span></div>
+          <div class="ph-row"><span class="ph-let">b.</span><span class="ph-txt">Des espèces</span><input class="dash md" type="text" placeholder="(rare)"><span class="ph-txt">sont menacées.</span></div>
+          <div class="ph-row"><span class="ph-let">c.</span><span class="ph-txt">Une organisation</span><input class="dash md" type="text" placeholder="(international)"><span class="ph-txt">agit.</span></div>
+          <div class="ph-row"><span class="ph-let">d.</span><span class="ph-txt">Des gestes</span><input class="dash md" type="text" placeholder="(écologique)"><span class="ph-txt">sont nécessaires.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">3</span>
+          <p class="consigne">Corrige les fautes d'orthographe dans ces phrases.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt" style="color:#c1121f;text-decoration:line-through wavy">Les arbre sont couper par des ouvrier.</span></div>
+          <textarea class="ta" rows="2" placeholder="Phrase corrigée…"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">b.</span><span class="ph-txt" style="color:#c1121f;text-decoration:line-through wavy">Elle a participé a une campagne de reboisment très importan.</span></div>
+          <textarea class="ta" rows="2" placeholder="Phrase corrigée…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">4</span>
+          <p class="consigne">Mets ces phrases au pluriel.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">Un animal sauvage vit dans cette forêt.</span></div>
+          <textarea class="ta" rows="2" placeholder="Au pluriel…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">b.</span><span class="ph-txt">Le bénévole s'engage dans un projet écologique.</span></div>
+          <textarea class="ta" rows="2" placeholder="Au pluriel…" style="margin-top:5px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. PRODUCTION -->
+    <div class="card">
+      <div class="card-head h-production"><span class="ico">✍️</span> Production de l'Écrit</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Rédige, en <strong>sept lignes minimum</strong>, un <strong>article de journal à visée informative</strong> pour sensibiliser les élèves de ton école aux dangers de la déforestation et aux gestes à adopter pour protéger les forêts.</p>
+          <textarea class="ta" rows="10" placeholder="Titre : …&#10;&#10;Rédige ton article ici…"></textarea>
+          <div class="grille">
+            <div class="grille-title">🔍 Grille de lecture</div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai rédigé un article informatif de 7 lignes ou plus.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai utilisé le vocabulaire du thème (forêt, déforestation, reboisement…).</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai respecté la ponctuation et les majuscules.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>Mes phrases sont correctes et bien construites.</label></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Lors d'une sortie scolaire, tu as visité une réserve naturelle. Raconte cette journée en décrivant ce que tu as vu, ressenti et appris.</p>
+          <textarea class="ta" rows="10" placeholder="Raconte ta journée ici…"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /p1 -->
+
+  <!-- ══════════ SÉRIE 2 ══════════ -->
+  <div class="panel" id="ap6-p2">
+
+    <!-- 1. LECTURE -->
+    <div class="card">
+      <div class="card-head h-lecture"><span class="ico">📖</span> Lecture – Compréhension</div>
+      <div class="card-body">
+        <div class="reading-txt">
+          <strong>L'eau, source de vie</strong>
+          L'eau est indispensable à la vie sur Terre. Elle couvre environ 71 % de la surface de notre planète, mais seulement 3 % est de l'eau douce, et une grande partie est gelée dans les pôles. Chaque être humain a besoin d'environ 2 à 3 litres d'eau par jour pour survivre. L'eau est utilisée dans l'agriculture, l'industrie et les foyers. Cependant, la pollution et le gaspillage menacent cette ressource précieuse. Des millions de personnes dans le monde n'ont pas accès à l'eau potable. Des organisations internationales, comme l'ONU, multiplient les actions pour préserver les ressources en eau et garantir l'accès à l'eau propre pour tous.
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">1</span>
+          <p class="consigne">Quel est le sujet principal de ce texte ?</p>
+          <textarea class="ta" rows="2" placeholder="Le texte parle de…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">2</span>
+          <p class="consigne">Quel pourcentage de la surface de la Terre est couvert par l'eau ? Quel pourcentage est de l'eau douce ?</p>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">3</span>
+          <p class="consigne">Quelles sont les deux menaces qui pèsent sur l'eau selon le texte ?</p>
+          <textarea class="ta" rows="2" placeholder="Les deux menaces sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">4</span>
+          <p class="consigne">Que fait l'ONU pour protéger les ressources en eau ?</p>
+          <textarea class="ta" rows="2" placeholder="L'ONU…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">5</span>
+          <p class="consigne">Ce texte est-il <em>informatif</em>, <em>narratif</em> ou <em>descriptif</em> ? Justifie ta réponse.</p>
+          <textarea class="ta" rows="3" placeholder="Ce texte est… parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">6</span>
+          <p class="consigne">Relève du texte deux mots appartenant au champ lexical de l'eau.</p>
+          <textarea class="ta" rows="2" placeholder="Les deux mots sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">7</span>
+          <p class="consigne">Propose un titre alternatif à ce texte et explique ton choix.</p>
+          <textarea class="ta" rows="3" placeholder="Mon titre alternatif est… parce que…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LEXIQUE -->
+    <div class="card">
+      <div class="card-head h-lexique"><span class="ico">🗂️</span> Lexique</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-orange">1</span>
+          <p class="consigne">Trouve le mot étiquette de ces groupes de mots.</p>
+          <div class="fill-row"><span class="ph-txt">a. Fleuve, rivière, lac, mer, océan →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">b. Pluie, grêle, neige, brouillard →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">c. Barrage, canal, aqueduc, robinet →</span><input class="dash lg" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">2</span>
+          <p class="consigne">Entoure les éléments qui se rapportent au champ lexical de <em>l'environnement</em>.</p>
+          <div class="cloud">
+            <span>la pollution</span><span>le livre</span><span>la déforestation</span>
+            <span>la calculatrice</span><span>le réchauffement climatique</span>
+            <span>la biodiversité</span><span>la craie</span><span>les énergies renouvelables</span>
+            <span>le gaspillage</span><span>la télévision</span>
+          </div>
+          <textarea class="ta" rows="3" placeholder="Les éléments du champ lexical de l'environnement sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">3</span>
+          <p class="consigne">Donne un antonyme (contraire) pour chaque mot.</p>
+          <div class="fill-row"><span class="ph-txt">a. <em>gaspillage</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">b. <em>polluer</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">c. <em>détruire</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GRAMMAIRE -->
+    <div class="card">
+      <div class="card-head h-grammaire"><span class="ico">📐</span> Grammaire</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-blue">1</span>
+          <p class="consigne">Souligne le CCM dans les phrases suivantes.</p>
+          <div class="two-col">
+            <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Les ingénieurs travaillent avec passion.</span></div>
+            <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Elle court très rapidement.</span></div>
+            <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">Mon ami est un bon élève.</span></div>
+            <div class="ph-row"><span class="ph-let bl">d.</span><span class="ph-txt">Il a répondu poliment à la question.</span></div>
+          </div>
+          <textarea class="ta" rows="3" placeholder="Les CCM trouvés sont…" style="margin-top:10px"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">2</span>
+          <p class="consigne">Complète les phrases avec un CCM approprié.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Les pompiers interviennent</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Les scientifiques observent les étoiles</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">3</span>
+          <p class="consigne">Complète les phrases avec un complément d'agent.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">La planète est menacée</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Les forêts sont protégées</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">L'eau est distribuée</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">4</span>
+          <p class="consigne">Transforme ces phrases actives en phrases passives.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Le gouvernement prend des mesures contre la pollution.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix passive…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">Les médecins vaccinent les enfants contre la rougeole.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix passive…" style="margin-top:5px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CONJUGAISON -->
+    <div class="card">
+      <div class="card-head h-conjugaison"><span class="ico">🔄</span> Conjugaison</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-purple">1</span>
+          <p class="consigne">Entoure les verbes pronominaux dans les phrases.</p>
+          <div class="cloud">
+            <span>Elles se parlent.</span><span>Il joue au football.</span>
+            <span>Nous nous promenons.</span><span>Tu te lèves tôt.</span>
+          </div>
+          <textarea class="ta" rows="2" placeholder="Les verbes pronominaux sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">2</span>
+          <p class="consigne">Conjugue le verbe <em>se réveiller</em> au présent de l'indicatif.</p>
+          <div class="conj-grid">
+            <div class="fill-row"><span class="ph-txt">Je</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Tu</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Vous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Il / Elle</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Ils / Elles</span><input class="dash md" type="text" placeholder="…"></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">3</span>
+          <p class="consigne">Écris une phrase avec un verbe pronominal au <em>passé composé</em>.</p>
+          <textarea class="ta" rows="2" placeholder="Au passé composé…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ORTHOGRAPHE -->
+    <div class="card">
+      <div class="card-head h-ortho"><span class="ico">✏️</span> Orthographe</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Complète les mots avec <em>-ou</em> ou <em>-eu</em>.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:4px">
+            <div class="fill-row"><span class="f-lbl">• le n</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le bl</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le cail</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le j</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le hib</span><input class="dash sm" type="text" placeholder="…"></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Mets ces noms au singulier.</p>
+          <div class="cloud">
+            <span>des cailloux</span><span>des choux</span><span>des poux</span>
+            <span>des genoux</span><span>des cheveux</span><span>des bleus</span><span>des feux</span>
+          </div>
+          <textarea class="ta" rows="2" placeholder="Les singuliers sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">3</span>
+          <p class="consigne">Complète les phrases avec <em>peu</em>, <em>peux</em> ou <em>peut</em>.</p>
+          <div class="ph-row"><span class="ph-txt">• Je</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">nager très vite.</span></div>
+          <div class="ph-row"><span class="ph-txt">• Il mange</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">le soir.</span></div>
+          <div class="ph-row"><span class="ph-txt">• Elle</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">résoudre ce problème.</span></div>
+          <div class="ph-row"><span class="ph-txt">• Nous avons</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">de temps libre.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">4</span>
+          <p class="consigne">Écris trois phrases : une avec <em>peu</em>, une avec <em>peux</em>, une avec <em>peut</em>.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">avec <em>peu</em> →</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">b.</span><span class="ph-txt">avec <em>peux</em> →</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">c.</span><span class="ph-txt">avec <em>peut</em> →</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. PRODUCTION -->
+    <div class="card">
+      <div class="card-head h-production"><span class="ico">✍️</span> Production de l'Écrit</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Rédige, en sept lignes, un <strong>article de journal à visée informative</strong> sur les dangers de la pollution de l'eau.</p>
+          <textarea class="ta" rows="9" placeholder="Titre : …&#10;&#10;Rédige ton article ici (7 lignes minimum)…"></textarea>
+          <div class="grille">
+            <div class="grille-title">🔍 Grille de lecture</div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai écrit un article à visée informative de 7 lignes ou plus.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai utilisé des phrases correctes.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai respecté la ponctuation.</label></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Tu as participé à une journée mondiale de l'eau dans ton école. Raconte comment tu as vécu cette journée.</p>
+          <textarea class="ta" rows="9" placeholder="Raconte ton expérience ici…"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /p2 -->
+
+  <!-- ══════════ SÉRIE 3 ══════════ -->
+  <div class="panel" id="ap6-p3">
+
+    <!-- 1. LECTURE -->
+    <div class="card">
+      <div class="card-head h-lecture"><span class="ico">📖</span> Lecture – Compréhension</div>
+      <div class="card-body">
+        <div class="reading-txt">
+          <strong>Les énergies renouvelables : une solution pour l'avenir</strong>
+          Face au réchauffement climatique et à l'épuisement des ressources fossiles, les énergies renouvelables apparaissent comme une solution indispensable. Ces énergies, comme le soleil, le vent, l'eau et la biomasse, sont inépuisables et moins polluantes que le pétrole ou le charbon. Les panneaux solaires, les éoliennes et les barrages hydroélectriques permettent de produire de l'électricité proprement. De nombreux pays investissent aujourd'hui dans ces technologies pour réduire leur dépendance aux énergies fossiles. En Algérie, le Programme National des Énergies Renouvelables vise à augmenter la part de ces énergies dans la production nationale d'électricité. Cette transition énergétique est un défi majeur du XXIe siècle.
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">1</span>
+          <p class="consigne">Quel est le titre du texte ? De quoi parle-t-il ?</p>
+          <textarea class="ta" rows="2" placeholder="Le texte s'intitule… Il parle de…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">2</span>
+          <p class="consigne">Cite quatre sources d'énergie renouvelable mentionnées dans le texte.</p>
+          <textarea class="ta" rows="2" placeholder="Les quatre sources sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">3</span>
+          <p class="consigne">Pourquoi les énergies renouvelables sont-elles préférables aux énergies fossiles ?</p>
+          <textarea class="ta" rows="3" placeholder="Parce que…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">4</span>
+          <p class="consigne">Qu'est-ce que le Programme National des Énergies Renouvelables en Algérie ?</p>
+          <textarea class="ta" rows="2" placeholder="C'est un programme qui vise à…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">5</span>
+          <p class="consigne">Ce texte est-il <em>informatif</em> ou <em>narratif</em> ? Justifie en relevant deux indices du texte.</p>
+          <textarea class="ta" rows="3" placeholder="Ce texte est… Les indices sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">6</span>
+          <p class="consigne">Relève du texte un mot de la même famille que <em>renouveler</em>.</p>
+          <textarea class="ta" rows="2" placeholder="Le mot est…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-green">7</span>
+          <p class="consigne">Explique avec tes propres mots l'expression <em>« transition énergétique »</em>.</p>
+          <textarea class="ta" rows="3" placeholder="La transition énergétique c'est…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LEXIQUE -->
+    <div class="card">
+      <div class="card-head h-lexique"><span class="ico">🗂️</span> Lexique</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-orange">1</span>
+          <p class="consigne">Trouve le mot étiquette de ces groupes de mots.</p>
+          <div class="fill-row"><span class="ph-txt">a. Éolienne, panneau solaire, barrage, pile à combustible →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">b. Pétrole, charbon, gaz naturel, fioul →</span><input class="dash lg" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">c. Physicien, chimiste, biologiste, ingénieur →</span><input class="dash lg" type="text" placeholder="…"></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">2</span>
+          <p class="consigne">Entoure les éléments qui se rapportent au champ lexical des <em>énergies renouvelables</em>.</p>
+          <div class="cloud">
+            <span>le vent</span><span>la pollution</span><span>le soleil</span>
+            <span>la mode</span><span>l'éolienne</span><span>le panneau solaire</span>
+            <span>la calculatrice</span><span>l'hydroélectricité</span>
+            <span>la biomasse</span><span>le stade</span>
+          </div>
+          <textarea class="ta" rows="3" placeholder="Les éléments du champ lexical des énergies renouvelables sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-orange">3</span>
+          <p class="consigne">Donne le contraire (antonyme) de chaque mot.</p>
+          <div class="fill-row"><span class="ph-txt">a. <em>renouvelable</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">b. <em>proprement</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+          <div class="fill-row"><span class="ph-txt">c. <em>inépuisable</em> →</span><input class="dash md" type="text" placeholder="…"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GRAMMAIRE -->
+    <div class="card">
+      <div class="card-head h-grammaire"><span class="ico">📐</span> Grammaire</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-blue">1</span>
+          <p class="consigne">Souligne le CCM dans ces phrases.</p>
+          <div class="two-col">
+            <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Elle travaille sérieusement.</span></div>
+            <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Il marche lentement vers la sortie.</span></div>
+            <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">Les oiseaux volent haut dans le ciel.</span></div>
+            <div class="ph-row"><span class="ph-let bl">d.</span><span class="ph-txt">Mon père est médecin.</span></div>
+          </div>
+          <textarea class="ta" rows="3" placeholder="Les CCM trouvés sont…" style="margin-top:10px"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">2</span>
+          <p class="consigne">Complète les phrases avec un CCM approprié.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Les éoliennes tournent</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Les scientifiques travaillent</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">pour trouver des solutions.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">3</span>
+          <p class="consigne">Complète les phrases avec un complément d'agent.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">La forêt est détruite</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let bl">b.</span><span class="ph-txt">Le prix est remporté</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+          <div class="ph-row"><span class="ph-let bl">c.</span><span class="ph-txt">Les panneaux solaires sont installés</span><input class="dash md" type="text" placeholder="…"><span class="ph-txt">.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-blue">4</span>
+          <p class="consigne">Transforme ces phrases actives en phrases passives.</p>
+          <div class="ph-row"><span class="ph-let bl">a.</span><span class="ph-txt">Le directeur organise la cérémonie.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix passive…" style="margin-top:5px"></textarea>
+          <div class="ph-row" style="margin-top:10px"><span class="ph-let bl">b.</span><span class="ph-txt">Les ingénieurs construisent des éoliennes.</span></div>
+          <textarea class="ta" rows="2" placeholder="Voix passive…" style="margin-top:5px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CONJUGAISON -->
+    <div class="card">
+      <div class="card-head h-conjugaison"><span class="ico">🔄</span> Conjugaison</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-purple">1</span>
+          <p class="consigne">Entoure les verbes pronominaux dans ces phrases.</p>
+          <div class="cloud">
+            <span>Ils se regardent.</span><span>Vous partez en vacances.</span>
+            <span>Nous nous promenons.</span><span>Elle chante bien.</span>
+          </div>
+          <textarea class="ta" rows="2" placeholder="Les verbes pronominaux sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">2</span>
+          <p class="consigne">Conjugue le verbe <em>se lever</em> au présent de l'indicatif.</p>
+          <div class="conj-grid">
+            <div class="fill-row"><span class="ph-txt">Je</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Nous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Tu</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Vous</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Il / Elle</span><input class="dash md" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="ph-txt">Ils / Elles</span><input class="dash md" type="text" placeholder="…"></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-purple">3</span>
+          <p class="consigne">Écris deux phrases : une au présent, une au passé composé avec un verbe pronominal.</p>
+          <div class="ph-row"><span class="ph-let pu">a.</span><span class="ph-txt">Présent :</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let pu">b.</span><span class="ph-txt">Passé composé :</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ORTHOGRAPHE -->
+    <div class="card">
+      <div class="card-head h-ortho"><span class="ico">✏️</span> Orthographe</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Complète les mots avec <em>-ou</em> ou <em>-eu</em>.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:4px">
+            <div class="fill-row"><span class="f-lbl">• le bat</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le mil</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le bij</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le f</span><input class="dash sm" type="text" placeholder="…"></div>
+            <div class="fill-row"><span class="f-lbl">• le am</span><input class="dash sm" type="text" placeholder="…"></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Écris ces mots au pluriel.</p>
+          <div class="cloud">
+            <span>un genou</span><span>un bijou</span><span>un chou</span>
+            <span>un jeu</span><span>un feu</span><span>un pieu</span><span>un bleu</span>
+          </div>
+          <textarea class="ta" rows="2" placeholder="Les pluriels sont…"></textarea>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">3</span>
+          <p class="consigne">Complète les phrases avec <em>peu</em>, <em>peux</em> ou <em>peut</em>.</p>
+          <div class="ph-row"><span class="ph-txt">• Cette voiture</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">rouler à grande vitesse.</span></div>
+          <div class="ph-row"><span class="ph-txt">• J'ai</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">de monnaie dans la poche.</span></div>
+          <div class="ph-row"><span class="ph-txt">• Tu</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">venir chez moi demain.</span></div>
+          <div class="ph-row"><span class="ph-txt">• Ils ont</span><input class="dash sm" type="text" placeholder="…"><span class="ph-txt">de courage.</span></div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">4</span>
+          <p class="consigne">Écris trois phrases : une avec <em>peu</em>, une avec <em>peux</em>, une avec <em>peut</em>.</p>
+          <div class="ph-row"><span class="ph-let">a.</span><span class="ph-txt">avec <em>peu</em> →</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">b.</span><span class="ph-txt">avec <em>peux</em> →</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+          <div class="ph-row" style="margin-top:8px"><span class="ph-let">c.</span><span class="ph-txt">avec <em>peut</em> →</span></div>
+          <textarea class="ta" rows="2" placeholder="…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. PRODUCTION -->
+    <div class="card">
+      <div class="card-head h-production"><span class="ico">✍️</span> Production de l'Écrit</div>
+      <div class="card-body">
+        <div class="ex">
+          <span class="ex-num n-red">1</span>
+          <p class="consigne">Rédige, en sept lignes, un <strong>article de journal à visée informative</strong> sur l'importance des énergies renouvelables pour lutter contre le réchauffement climatique.</p>
+          <textarea class="ta" rows="9" placeholder="Titre : …&#10;&#10;Rédige ton article ici (7 lignes minimum)…"></textarea>
+          <div class="grille">
+            <div class="grille-title">🔍 Grille de lecture</div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai écrit un article à visée informative de 7 lignes ou plus.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai utilisé des phrases correctes.</label></div>
+            <div class="chk-row"><input type="checkbox"><label>J'ai respecté la ponctuation.</label></div>
+          </div>
+        </div>
+        <div class="ex">
+          <span class="ex-num n-red">2</span>
+          <p class="consigne">Tu as participé à une opération de sensibilisation aux énergies renouvelables dans ton quartier. Raconte comment tu as vécu cette expérience.</p>
+          <textarea class="ta" rows="9" placeholder="Raconte ton expérience ici…"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /p3 -->
+
+
+  </div>
+
+  <footer class="footer-6ap">
+    Élaborée par <strong>Prof : Ikbal Ouaissa</strong> &nbsp;|&nbsp; S.S Arkmane &nbsp;|&nbsp; Direction Provinciale : Nador – L'Oriental
+    <span class="ar">أعدّه الأستاذ : <strong>إقبال وعيسى</strong> — مجموعة مدارس قرية أركمان — المديرية الإقليمية : الناظور — الشرق</span>
+  </footer>
+
+</div><!-- /screen-6ap -->
+
+<script>
+// ── Navigation
+function goLevel(lvl){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+lvl).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-home').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── 5AP series tabs
+function show5(n,btn){
+  document.querySelectorAll('#screen-5ap .panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('#screen-5ap .tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('ap5-p'+n).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── 6AP series tabs
+function show6(n,btn){
+  document.querySelectorAll('#screen-6ap .panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('#screen-6ap .tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('ap6-p'+n).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Fix onclick attributes in dynamic content to use namespaced functions
+// already handled by string replacement above
+</script>
+</body>
+</html>
