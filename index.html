@@ -343,13 +343,6 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
   .back-btn{font-size:11px;padding:5px 10px}
 }
 
-  .panel{display:block!important;page-break-after:always}
-  body{background:#fff}
-  .screen{display:block!important}
-}
-
-
-
 
 /* ══════════════════════════════════════════
    INSTRUCTION BANNER (top of exercise page)
@@ -512,41 +505,289 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
   #print-zone{
     display:block!important;
     font-family:'Montserrat',sans-serif;
-    font-size:11pt;color:#000;background:#fff;
+    font-size:11pt;
+    color:#111;
+    background:#fff;
   }
+  .prt-doc{padding:0}
   .prt-header{
-    display:flex;justify-content:space-between;align-items:flex-start;
-    border-bottom:3px solid #1d3557;padding-bottom:8pt;margin-bottom:14pt;
+    display:grid;
+    grid-template-columns:1fr 1.2fr 1fr;
+    gap:12pt;
+    align-items:start;
+    border-bottom:3px solid #1d3557;
+    padding-bottom:10pt;
+    margin-bottom:14pt;
   }
-  .prt-header-left{font-size:10pt;font-weight:700;color:#1d3557}
-  .prt-header-center{text-align:center;font-size:11pt;font-weight:900;color:#c1121f}
-  .prt-header-right{text-align:right;font-size:10pt;font-weight:700;color:#1d3557}
-  .prt-card{margin-bottom:14pt;page-break-inside:avoid}
+  .prt-side{
+    font-size:10pt;
+    font-weight:700;
+    color:#1d3557;
+  }
+  .prt-side-right{text-align:right}
+  .prt-center{
+    text-align:center;
+    font-size:11.5pt;
+    font-weight:900;
+    color:#111;
+    line-height:1.5;
+  }
+  .prt-center span{
+    color:#5c2d91;
+    font-size:10pt;
+  }
+  .prt-card{
+    margin-bottom:14pt;
+    page-break-inside:avoid;
+  }
   .prt-card-title{
-    color:#fff;padding:5pt 9pt;font-size:10.5pt;font-weight:800;
-    border-radius:4pt;margin-bottom:7pt;
+    color:#fff;
+    padding:6pt 10pt;
+    font-size:10.5pt;
+    font-weight:800;
+    border-radius:5pt;
+    margin-bottom:8pt;
   }
-  .prt-ex{margin-bottom:8pt;padding-bottom:7pt;border-bottom:1px dashed #ccc}
-  .prt-ex:last-child{border-bottom:none}
-  .prt-q{font-size:9.5pt;font-weight:700;margin-bottom:4pt}
+  .prt-ex{
+    margin-bottom:8pt;
+    padding-bottom:7pt;
+    border-bottom:1px dashed #cfcfcf;
+    page-break-inside:avoid;
+  }
+  .prt-q{
+    font-size:9.7pt;
+    font-weight:700;
+    margin-bottom:4pt;
+    line-height:1.45;
+  }
   .prt-ans{
-    background:#f9f9f9;border:1px solid #ddd;
-    border-radius:3pt;padding:5pt 8pt;
-    font-size:9.5pt;color:#1d3557;font-weight:600;
-    white-space:pre-wrap;min-height:20pt;
+    background:#f5efff;
+    border:1px solid #d4c5f4;
+    border-radius:4pt;
+    padding:5pt 8pt;
+    font-size:9.5pt;
+    color:#5c2d91;
+    font-weight:800;
+    line-height:1.55;
+    white-space:pre-wrap;
+    margin-bottom:4pt;
   }
-  .prt-ans.empty{color:#aaa;font-style:italic}
+  .prt-answer{
+    color:#5c2d91;
+    font-weight:800;
+  }
+  .prt-empty{
+    color:#999;
+    font-style:italic;
+    font-weight:500;
+  }
+  .prt-checks{margin-top:4pt}
+  .prt-check-item{
+    font-size:9pt;
+    margin-bottom:2pt;
+    color:#5c2d91;
+    font-weight:800;
+  }
   .prt-footer{
-    position:fixed;bottom:0;left:0;right:0;
-    border-top:1.5px solid #ccc;padding-top:5pt;
-    display:flex;justify-content:space-between;
-    font-size:9pt;color:#666;background:#fff;
+    margin-top:18pt;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1.5px solid #bfbfbf;
+    padding-top:6pt;
+    font-size:9pt;
+    color:#444;
   }
-  @page{size:A4;margin:2cm 2cm 2.8cm 2cm}
-  .sticky-bottom,.site-header,.back-btn,.tabs,.tab,
-  .print-zone-btn,.instr-banner{display:none!important}
+  .sticky-bottom,.site-header,.back-btn,.tabs,.tab,.print-zone-btn,.instr-banner,.level-gate,.series-lock-msg{display:none!important}
   .screen{display:block!important}
   .panel{display:block!important}
+  @page{size:A4}
+}
+
+
+/* ══════════════════════════════════════════
+   HEADER PROGRESS + SERIES LOCK + FEEDBACK
+══════════════════════════════════════════ */
+.site-header{
+  align-items:flex-start;
+}
+.header-progress-box{
+  width:100%;
+  max-width:860px;
+  margin:10px auto 0;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:14px;
+  padding:10px 12px 11px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.header-progress-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:6px;
+}
+.header-progress-label{
+  font-size:11.5px;
+  font-weight:800;
+}
+.header-progress-pct{
+  font-size:14px;
+  font-weight:900;
+}
+.header-progress-track{
+  height:10px;
+  background:rgba(255,255,255,.22);
+  border-radius:999px;
+  overflow:hidden;
+}
+.header-progress-bar{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#f4c542,#f39c12);
+  transition:width .35s ease, background .35s ease;
+}
+.header-progress-bar.done{
+  background:linear-gradient(90deg,#27ae60,#2ecc71);
+}
+.header-progress-cite{
+  margin-top:7px;
+  font-family:'Tajawal',sans-serif;
+  direction:rtl;
+  text-align:right;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.45;
+  color:#fff;
+  opacity:.95;
+}
+.level-gate{
+  background:linear-gradient(135deg,#fffbea,#fff8f0);
+  border-left:5px solid var(--gold);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:16px 18px;
+  margin-bottom:16px;
+}
+.level-gate h3{
+  font-size:14px;
+  color:var(--orange);
+  margin-bottom:6px;
+}
+.level-gate p{
+  font-size:12.7px;
+  color:#444;
+  line-height:1.7;
+}
+.level-gate .ar{
+  display:block;
+  margin-top:8px;
+  font-family:'Tajawal',sans-serif;
+  direction:rtl;
+  text-align:right;
+  font-size:14px;
+  font-weight:700;
+  color:#555;
+}
+.series-lock-msg{
+  display:none;
+  align-items:center;
+  gap:10px;
+  margin:-8px 0 18px;
+  padding:12px 14px;
+  background:#fff1f0;
+  border:2px solid #ffb4a9;
+  color:#7a0000;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  font-weight:800;
+}
+.series-lock-msg.show{display:flex}
+.series-lock-msg .icon{font-size:24px}
+.tab{
+  position:relative;
+}
+.tab.disabled,
+.tab.locked{
+  opacity:.55;
+  filter:grayscale(.2);
+  cursor:not-allowed;
+}
+.tab.selected-only{
+  opacity:1;
+  cursor:default;
+}
+.tab.locked::after{
+  content:'🔒';
+  position:absolute;
+  top:7px;
+  right:10px;
+  font-size:12px;
+}
+.panel{display:none}
+.panel.on{display:block}
+.screen-panel-hidden{display:none!important}
+.name-error{
+  border-color:#c1121f!important;
+  box-shadow:0 0 0 3px rgba(193,18,31,.12);
+}
+.post-print-msg{
+  display:none;
+  margin-top:16px;
+  padding:14px 16px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#eefaf2,#f7fff8);
+  border:2px solid #27ae60;
+  color:#1b6e3b;
+  box-shadow:var(--shadow);
+}
+.post-print-msg.show{display:block}
+.post-print-msg .ar{
+  display:block;
+  margin-top:5px;
+  font-family:'Tajawal',sans-serif;
+  direction:rtl;
+  text-align:right;
+  font-size:14px;
+  font-weight:700;
+}
+#screen-5ap input.dash,
+#screen-5ap textarea.ta,
+#screen-5ap .student-bar input,
+#screen-6ap input.dash,
+#screen-6ap textarea.ta,
+#screen-6ap .student-bar input{
+  color:var(--violet)!important;
+  font-weight:800;
+}
+#screen-5ap textarea.ta:focus,
+#screen-5ap .student-bar input:focus,
+#screen-6ap textarea.ta:focus,
+#screen-6ap .student-bar input:focus{
+  border-color:var(--violet-lt)!important;
+}
+.print-zone-btn{display:none}
+.print-zone-btn.visible{display:flex}
+@media(max-width:700px){
+  .header-progress-box{
+    padding:9px 10px 10px;
+  }
+  .header-progress-cite{
+    font-size:12px;
+  }
+}
+@media(max-width:520px){
+  .header-progress-top{
+    align-items:flex-start;
+    flex-direction:row;
+  }
+  .header-progress-label{
+    font-size:11px;
+  }
+  .header-progress-pct{
+    font-size:13px;
+  }
 }
 
 </style>
@@ -679,19 +920,25 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
 
 <div id="screen-5ap" class="screen">
 
-  <header class="site-header ap5-hdr">
-    <button class="back-btn" onclick="goHome()">← Accueil</button>
+    <header class="site-header ap5-hdr">
+    <button class="back-btn" type="button" onclick="goHome()">← Accueil</button>
     <div class="hdr-center">
       <div class="pill ap5-pill">📚 Niveau 5AP</div>
       <h1>Exercices de Soutien et de Consolidation</h1>
       <p>Lecture · Lexique · Grammaire · Conjugaison · Orthographe · Production de l'écrit</p>
     </div>
     <div style="width:110px"></div>
-  </header>
-    <div class="progress-track">
-      <div class="progress-bar-sticky"></div>
+    <div class="header-progress-box" aria-live="polite">
+      <div class="header-progress-top">
+        <span class="header-progress-label">📊 Progression</span>
+        <span class="header-progress-pct" id="hdr-pct-5ap">0%</span>
+      </div>
+      <div class="header-progress-track">
+        <div class="header-progress-bar" id="hdr-bar-5ap" style="width:0%"></div>
+      </div>
+      <div class="header-progress-cite" id="hdr-cite-5ap">🌱 كل رحلة تبدأ بخطوة واحدة — ابدأ الآن!</div>
     </div>
-  </div>
+  </header>
 
   <div class="wrap">
 
@@ -1322,19 +1569,25 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
 
 <div id="screen-6ap" class="screen">
 
-  <header class="site-header ap6-hdr">
-    <button class="back-btn" onclick="goHome()">← Accueil</button>
+    <header class="site-header ap6-hdr">
+    <button class="back-btn" type="button" onclick="goHome()">← Accueil</button>
     <div class="hdr-center">
       <div class="pill ap6-pill">📚 Niveau 6AP</div>
       <h1>Exercices de Soutien et de Consolidation</h1>
       <p>Lecture · Lexique · Grammaire · Conjugaison · Orthographe · Production de l'écrit</p>
     </div>
     <div style="width:110px"></div>
-  </header>
-    <div class="progress-track">
-      <div class="progress-bar-sticky"></div>
+    <div class="header-progress-box" aria-live="polite">
+      <div class="header-progress-top">
+        <span class="header-progress-label">📊 Progression</span>
+        <span class="header-progress-pct" id="hdr-pct-6ap">0%</span>
+      </div>
+      <div class="header-progress-track">
+        <div class="header-progress-bar" id="hdr-bar-6ap" style="width:0%"></div>
+      </div>
+      <div class="header-progress-cite" id="hdr-cite-6ap">🌱 كل رحلة تبدأ بخطوة واحدة — ابدأ الآن!</div>
     </div>
-  </div>
+  </header>
 
   <div class="wrap">
 
@@ -2072,125 +2325,281 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
 
 <script>
 
-// ══════════════════════════════════════════════
-//  NAVIGATION
-// ══════════════════════════════════════════════
-function goLevel(lvl){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+lvl).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(()=>updateProgress(lvl), 150);
-}
-function goHome(){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-home').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  // Hide sticky bars
-  document.querySelectorAll('.sticky-bottom').forEach(b=>b.classList.remove('visible'));
-}
 
 // ══════════════════════════════════════════════
-//  SERIES TABS
-// ══════════════════════════════════════════════
-function show5(n,btn){
-  document.querySelectorAll('#screen-5ap .panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('#screen-5ap .tab').forEach(b=>b.classList.remove('on'));
-  document.getElementById('ap5-p'+n).classList.add('on');
-  btn.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-  updateProgress('5ap');
-}
-function show6(n,btn){
-  document.querySelectorAll('#screen-6ap .panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('#screen-6ap .tab').forEach(b=>b.classList.remove('on'));
-  document.getElementById('ap6-p'+n).classList.add('on');
-  btn.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-  updateProgress('6ap');
-}
-
-// ══════════════════════════════════════════════
-//  CITATIONS ARABES selon progression
+//  STATE
 // ══════════════════════════════════════════════
 const CITATIONS = [
-  { min:0,  max:10,  text:'🌱 كل رحلة تبدأ بخطوة واحدة — ابدأ الآن!' },
-  { min:10, max:25,  text:'💪 أحسنت! استمر، النجاح يحبّ المثابرة.' },
-  { min:25, max:50,  text:'✨ في منتصف الطريق! لا تتوقف، أنت تتقدّم.' },
-  { min:50, max:75,  text:'🚀 رائع! أكثر من نصف الأسئلة أنجزتها، واصل!' },
-  { min:75, max:95,  text:'🌟 أحسنت جداً! لم يبق إلا القليل، أكمل بعزم.' },
-  { min:95, max:99,  text:'🎯 تقريباً! إجابة واحدة تفصلك عن زر الطباعة.' },
-  { min:100,max:101, text:'🏆 ممتاز! لقد أكملت جميع الأسئلة. أنت نجم!' },
+  {min:0, max:10, text:'🌱 كل رحلة تبدأ بخطوة واحدة — ابدأ الآن!'},
+  {min:10, max:25, text:'💪 أحسنت! استمر، النجاح يحبّ المثابرة.'},
+  {min:25, max:50, text:'✨ في منتصف الطريق! لا تتوقف، أنت تتقدّم.'},
+  {min:50, max:75, text:'🚀 رائع! أكثر من نصف الأسئلة أنجزتها، واصل!'},
+  {min:75, max:95, text:'🌟 أحسنت جداً! لم يبق إلا القليل، أكمل بعزم.'},
+  {min:95, max:100, text:'🎯 تقريباً! إجابة واحدة تفصلك عن زر الطباعة.'},
+  {min:100, max:101, text:'🏆 ممتاز! لقد أكملت جميع الأسئلة. أنت نجم!'}
 ];
 
-function getCitation(pct){
-  return CITATIONS.find(c => pct >= c.min && pct < c.max)?.text || '';
-}
+const levelState = {
+  '5ap': {selectedSeries:null, printed:false},
+  '6ap': {selectedSeries:null, printed:false}
+};
 
-// ══════════════════════════════════════════════
-//  FIELD COUNTING
-// ══════════════════════════════════════════════
+function getCitation(pct){
+  return CITATIONS.find(c => pct >= c.min && pct < c.max)?.text || CITATIONS[0].text;
+}
+function levelLabel(lvl){
+  return lvl === '5ap' ? '5AP' : '6AP';
+}
+function getScreen(lvl){
+  return document.getElementById('screen-' + lvl);
+}
+function getNameInput(lvl){
+  return document.getElementById('student-name-' + lvl);
+}
+function getTabs(lvl){
+  return [...document.querySelectorAll('#screen-' + lvl + ' .tab')];
+}
+function getPanels(lvl){
+  return [...document.querySelectorAll('#screen-' + lvl + ' .panel')];
+}
+function getPanelBySeries(lvl, seriesNumber){
+  return document.getElementById((lvl === '5ap' ? 'ap5-p' : 'ap6-p') + seriesNumber);
+}
 function getActivePanel(lvl){
-  return document.querySelector('#screen-'+lvl+' .panel.on');
+  const s = levelState[lvl].selectedSeries;
+  return s ? getPanelBySeries(lvl, s) : null;
+}
+function showOnlyPanel(lvl, seriesNumber){
+  getPanels(lvl).forEach(panel => panel.classList.remove('on'));
+  const panel = getPanelBySeries(lvl, seriesNumber);
+  if(panel) panel.classList.add('on');
+}
+function hideAllPanels(lvl){
+  getPanels(lvl).forEach(panel => panel.classList.remove('on'));
+}
+function setTabsVisualState(lvl){
+  const state = levelState[lvl];
+  const hasName = !!getNameInput(lvl)?.value.trim();
+  getTabs(lvl).forEach((tab, index) => {
+    const seriesNumber = index + 1;
+    tab.type = 'button';
+    tab.classList.remove('disabled','locked','selected-only','on');
+    tab.disabled = false;
+
+    if(!hasName){
+      tab.classList.add('disabled');
+      tab.disabled = true;
+      return;
+    }
+
+    if(state.selectedSeries === null){
+      return;
+    }
+
+    if(seriesNumber === state.selectedSeries){
+      tab.classList.add('on','selected-only');
+      return;
+    }
+
+    if(!state.printed){
+      tab.classList.add('locked');
+      tab.disabled = false;
+    }
+  });
+}
+function showSeriesLockMessage(lvl, message){
+  const box = document.getElementById('series-lock-msg-' + lvl);
+  if(!box) return;
+  box.querySelector('.msg').textContent = message;
+  box.classList.add('show');
+  clearTimeout(box._hideTimer);
+  box._hideTimer = setTimeout(() => box.classList.remove('show'), 2800);
+}
+function setNameGateState(lvl){
+  const input = getNameInput(lvl);
+  const gate = document.getElementById('level-gate-' + lvl);
+  const hasName = !!input?.value.trim();
+  if(gate) gate.style.display = hasName ? 'none' : 'block';
+  if(!hasName && levelState[lvl].selectedSeries === null){
+    hideAllPanels(lvl);
+  }
+  setTabsVisualState(lvl);
 }
 function countAll(panel){
-  const inputs    = [...panel.querySelectorAll('input.dash')];
+  const inputs = [...panel.querySelectorAll('input.dash')];
   const textareas = [...panel.querySelectorAll('textarea.ta')];
-  const checks    = [...panel.querySelectorAll('input[type="checkbox"]')];
-  return { inputs, textareas, checks,
-           total: inputs.length + textareas.length + checks.length };
+  const checks = []; // Les cases à cocher ne comptent pas dans la progression.
+  return {inputs, textareas, checks, total: inputs.length + textareas.length};
 }
 function countFilled(panel){
-  const {inputs,textareas,checks} = countAll(panel);
-  return inputs.filter(i=>i.value.trim()).length
-       + textareas.filter(t=>t.value.trim()).length
-       + checks.filter(c=>c.checked).length;
+  const {inputs, textareas} = countAll(panel);
+  return inputs.filter(i => i.value.trim()).length
+       + textareas.filter(t => t.value.trim()).length;
 }
-
-// ══════════════════════════════════════════════
-//  UPDATE PROGRESS
-// ══════════════════════════════════════════════
 function updateProgress(lvl){
   const panel = getActivePanel(lvl);
-  if(!panel) return;
-  const {total} = countAll(panel);
-  const filled  = countFilled(panel);
-  const pct     = total===0 ? 100 : Math.round((filled/total)*100);
-  const done    = pct===100;
+  const pctEl = document.getElementById('hdr-pct-' + lvl);
+  const barEl = document.getElementById('hdr-bar-' + lvl);
+  const citeEl = document.getElementById('hdr-cite-' + lvl);
+  const printZone = document.getElementById('print-zone-' + lvl);
+  let pct = 0;
 
-  // ── Sticky bottom bar
-  const sticky = document.getElementById('sticky-'+lvl);
-  if(sticky){
-    const bar  = sticky.querySelector('.sticky-bar');
-    const pctEl= sticky.querySelector('.sticky-pct');
-    const citEl= sticky.querySelector('.sticky-citation');
-    if(bar){ bar.style.width=pct+'%'; bar.classList.toggle('done',done); }
-    if(pctEl){ pctEl.textContent=pct+'%'; pctEl.classList.toggle('done',done); }
-    if(citEl){ citEl.textContent=getCitation(pct); }
-    sticky.classList.toggle('visible', pct>0);
+  if(panel){
+    const {total} = countAll(panel);
+    const filled = countFilled(panel);
+    pct = total === 0 ? 0 : Math.round((filled / total) * 100);
   }
 
-  // ── Print button zone
-  const printZone = document.getElementById('print-zone-'+lvl);
-  if(printZone) printZone.classList.toggle('visible', done);
+  if(pctEl) pctEl.textContent = pct + '%';
+  if(barEl){
+    barEl.style.width = pct + '%';
+    barEl.classList.toggle('done', pct === 100);
+  }
+  if(citeEl) citeEl.textContent = getCitation(pct);
+
+  const hasName = !!getNameInput(lvl)?.value.trim();
+  const readyToPrint = !!panel && hasName && pct === 100;
+  if(printZone) printZone.classList.toggle('visible', readyToPrint);
+}
+function resetPrintMessage(lvl){
+  const msg = document.getElementById('post-print-msg-' + lvl);
+  if(msg) msg.classList.remove('show');
+}
+function chooseSeries(lvl, seriesNumber, btn){
+  const input = getNameInput(lvl);
+  const name = input?.value.trim() || '';
+  if(!name){
+    input?.classList.add('name-error');
+    input?.focus();
+    showSeriesLockMessage(lvl, 'اكتب الاسم الكامل أولاً');
+    return;
+  }
+  input?.classList.remove('name-error');
+
+  const state = levelState[lvl];
+  if(state.selectedSeries !== null && state.selectedSeries !== seriesNumber && !state.printed){
+    showSeriesLockMessage(lvl, '😠 جاوب بعدا على هاد السلسلة و طبع الأجوبة');
+    return;
+  }
+
+  if(state.selectedSeries !== seriesNumber){
+    state.selectedSeries = seriesNumber;
+    state.printed = false;
+    resetPrintMessage(lvl);
+  }
+
+  showOnlyPanel(lvl, seriesNumber);
+  setTabsVisualState(lvl);
+  updateProgress(lvl);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function show5(n, btn){ chooseSeries('5ap', n, btn); }
+function show6(n, btn){ chooseSeries('6ap', n, btn); }
+
+function goLevel(lvl){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  getScreen(lvl).classList.add('active');
+  setNameGateState(lvl);
+  setTabsVisualState(lvl);
+  updateProgress(lvl);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function goHome(){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-home').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// ══════════════════════════════════════════════
-//  LISTEN TO ALL INPUTS
-// ══════════════════════════════════════════════
-document.addEventListener('input', e=>{
-  if(document.getElementById('screen-5ap').contains(e.target)) updateProgress('5ap');
-  if(document.getElementById('screen-6ap').contains(e.target)) updateProgress('6ap');
-});
-document.addEventListener('change', e=>{
-  if(document.getElementById('screen-5ap').contains(e.target)) updateProgress('5ap');
-  if(document.getElementById('screen-6ap').contains(e.target)) updateProgress('6ap');
-});
+function getCheckboxPrintLabel(cb){
+  const rowLabel = cb.closest('.chk-row')?.querySelector('label')?.textContent?.trim();
+  if(rowLabel) return rowLabel;
 
-// ══════════════════════════════════════════════
-//  PRINT FUNCTION
-// ══════════════════════════════════════════════
+  const td = cb.closest('td');
+  const tr = cb.closest('tr');
+  if(td && tr){
+    const table = tr.closest('table');
+    const cells = [...tr.children];
+    const colIndex = cells.indexOf(td);
+    const rowText = tr.querySelector('td')?.textContent?.trim() || '';
+    const colText = table?.querySelector(`tr:first-child th:nth-child(${colIndex + 1})`)?.textContent?.trim() || '';
+    const parts = [rowText, colText].filter(Boolean);
+    return parts.join(' — ');
+  }
+
+  return '';
+}
+function buildPrintAnswerHtml(ex){
+  let body = '';
+  const rows = [...ex.querySelectorAll('.ph-row, .fill-row, .arrow-row')];
+  if(rows.length){
+    rows.forEach(row => {
+      let line = '';
+      [...row.childNodes].forEach(node => {
+        if(node.nodeType === Node.TEXT_NODE){
+          line += node.textContent.replace(/\s+/g, ' ');
+        }else if(node.nodeType === Node.ELEMENT_NODE){
+          if(node.matches('.ph-let, .f-lbl, .ph-txt, .arrow-word, .arrow, span')){
+            line += ' ' + node.textContent.trim() + ' ';
+          }else if(node.tagName === 'INPUT' && node.type === 'text'){
+            const v = node.value.trim();
+            line += v ? `<span class="prt-answer">[${escapeHtml(v)}]</span>` : '<span class="prt-empty">[___]</span>';
+          }
+        }
+      });
+      if(line.trim()) body += `<div class="prt-ans">${line.trim()}</div>`;
+    });
+  } else {
+    const textareas = [...ex.querySelectorAll('textarea.ta')];
+    if(textareas.length){
+      textareas.forEach(t => {
+        const v = t.value.trim();
+        body += `<div class="prt-ans">${v ? `<span class="prt-answer">${escapeHtml(v).replace(/\n/g, '<br>')}</span>` : '<span class="prt-empty">(sans réponse)</span>'}</div>`;
+      });
+    }
+    const inps = [...ex.querySelectorAll('input.dash')];
+    if(inps.length){
+      body += `<div class="prt-ans">${inps.map(i => i.value.trim() ? `<span class="prt-answer">[${escapeHtml(i.value.trim())}]</span>` : '<span class="prt-empty">[___]</span>').join(' · ')}</div>`;
+    }
+  }
+
+  const selectedChecks = [...ex.querySelectorAll('input[type="checkbox"]:checked')]
+    .map(cb => getCheckboxPrintLabel(cb))
+    .filter(Boolean);
+  if(selectedChecks.length){
+    body += '<div class="prt-checks">';
+    selectedChecks.forEach(lbl => {
+      body += `<div class="prt-check-item">☑ ${escapeHtml(lbl)}</div>`;
+    });
+    body += '</div>';
+  }
+  return body;
+}
+function escapeHtml(str){
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 function doPrint(lvl){
-  // Confirmation message
+  const panel = getActivePanel(lvl);
+  const nameInput = getNameInput(lvl);
+  const studentName = nameInput?.value.trim() || '';
+  if(!studentName){
+    showSeriesLockMessage(lvl, 'اكتب الاسم الكامل أولاً');
+    nameInput?.focus();
+    return;
+  }
+  if(!panel) return;
+
+  const {total} = countAll(panel);
+  const filled = countFilled(panel);
+  if(total === 0 || filled < total){
+    showSeriesLockMessage(lvl, 'أكمل جميع الأجوبة أولاً');
+    return;
+  }
+
   const confirmed = confirm(
     '🖨️ Imprimer mes réponses\n\n' +
     'ورقة الأجوبة سيتم إرفاقها بملفك الشخصي.\n' +
@@ -2200,189 +2609,153 @@ function doPrint(lvl){
   );
   if(!confirmed) return;
 
-  const panel = getActivePanel(lvl);
-  if(!panel) return;
-
-  const nameInput = document.querySelector('#screen-'+lvl+' .student-bar input');
-  const studentName = nameInput ? nameInput.value.trim() || '—' : '—';
-  const activeTab = document.querySelector('#screen-'+lvl+' .tab.on');
-  const serieNum  = activeTab ? activeTab.textContent.replace(/[^123]/g,'') : '?';
-  const niveau    = lvl==='5ap' ? '5AP' : '6AP';
-
+  const activeTab = document.querySelector('#screen-' + lvl + ' .tab.on');
+  const serieLabel = activeTab ? activeTab.textContent.trim() : 'Série';
+  const niveau = levelLabel(lvl);
   const colors = {
-    'h-lecture':'#1b6e3b','h-lexique':'#b5440a','h-grammaire':'#1d3557',
-    'h-conjugaison':'#5c2d91','h-ortho':'#7a0000','h-production':'#5a0000'
+    'h-lecture':'#1b6e3b',
+    'h-lexique':'#b5440a',
+    'h-grammaire':'#1d3557',
+    'h-conjugaison':'#5c2d91',
+    'h-ortho':'#7a0000',
+    'h-production':'#5a0000'
   };
 
   let body = `
-    <div class="prt-header">
-      <div class="prt-header-left">Niveau : <strong>${niveau}</strong></div>
-      <div class="prt-header-center">
-        Exercices de Soutien et de Consolidation<br>
-        <span style="font-size:9pt">Série ${serieNum}</span>
+    <div class="prt-doc">
+      <div class="prt-header">
+        <div class="prt-side">Niveau : <strong>${niveau}</strong></div>
+        <div class="prt-center">Exercices de Soutien et de Consolidation<br><span>${escapeHtml(serieLabel)}</span></div>
+        <div class="prt-side prt-side-right">Nom apprenant : <strong>${escapeHtml(studentName)}</strong></div>
       </div>
-      <div class="prt-header-right">Élève : <strong>${studentName}</strong></div>
-    </div>
   `;
 
-  panel.querySelectorAll('.card').forEach(card=>{
-    const head = card.querySelector('.card-head');
-    let bg = '#1d3557';
-    if(head){ for(const [cls,col] of Object.entries(colors)) if(head.classList.contains(cls)){bg=col;break;} }
-    const title = head ? head.textContent.trim() : '';
-
-    body += `<div class="prt-card"><div class="prt-card-title" style="background:${bg}">${title}</div>`;
-
-    card.querySelectorAll('.ex').forEach(ex=>{
-      body += '<div class="prt-ex">';
-      const consigne = ex.querySelector('.consigne');
-      if(consigne) body += `<div class="prt-q">${consigne.innerHTML}</div>`;
-
-      // Textareas
-      ex.querySelectorAll('textarea.ta').forEach(ta=>{
-        const v = ta.value.trim();
-        body += `<div class="prt-ans${v?'':' empty'}">${v||'(sans réponse)'}</div>`;
-      });
-
-      // Inline inputs (only if no textareas)
-      const tas = ex.querySelectorAll('textarea.ta');
-      if(tas.length===0){
-        const rows = ex.querySelectorAll('.ph-row,.fill-row,.arrow-row');
-        rows.forEach(row=>{
-          let line='';
-          row.childNodes.forEach(node=>{
-            if(node.nodeType===3) line+=node.textContent;
-            else if(node.tagName==='SPAN') line+=node.textContent;
-            else if(node.tagName==='INPUT'&&node.type==='text'){
-              const v=node.value.trim();
-              line+=v?`[${v}]`:'[___]';
-            }
-          });
-          if(line.trim()) body+=`<div class="prt-ans">${line.trim()}</div>`;
-        });
-        // Standalone inputs
-        if(rows.length===0){
-          const inps=[...ex.querySelectorAll('input.dash')];
-          if(inps.length){
-            body+=`<div class="prt-ans">${inps.map(i=>i.value.trim()||'___').join(' · ')}</div>`;
-          }
-        }
-      }
-
-      // Checkboxes
-      const cbs=[...ex.querySelectorAll('input[type="checkbox"]')];
-      if(cbs.length){
-        body+='<div style="margin-top:4pt">';
-        cbs.forEach(cb=>{
-          const lbl=cb.nextElementSibling?.textContent||'';
-          body+=`<div style="font-size:9pt;margin-bottom:2pt">${cb.checked?'☑':'☐'} ${lbl}</div>`;
-        });
-        body+='</div>';
-      }
-      body+='</div>';
+  [...panel.querySelectorAll('.card')].forEach(card => {
+    const title = card.querySelector('.card-head')?.textContent.trim() || '';
+    const colorClass = [...(card.querySelector('.card-head')?.classList || [])].find(c => colors[c]) || 'h-grammaire';
+    body += `<div class="prt-card">
+      <div class="prt-card-title" style="background:${colors[colorClass]}">${escapeHtml(title)}</div>`;
+    [...card.querySelectorAll('.ex')].forEach(ex => {
+      const q = ex.querySelector('.consigne')?.textContent.trim() || '';
+      body += `<div class="prt-ex">
+        <div class="prt-q">${escapeHtml(q)}</div>
+        ${buildPrintAnswerHtml(ex)}
+      </div>`;
     });
-    body+='</div>';
+    body += `</div>`;
   });
 
   body += `
-    <div class="prt-footer">
-      <span>Soutien et Consolidation – UD5</span>
-      <span>Par : Prof Ikbal Ouaissa</span>
+      <div class="prt-footer">
+        <span>Soutien et consolidation UD5</span>
+        <span>Prof : IKBAL OUAISSA</span>
+      </div>
     </div>
   `;
 
   document.getElementById('print-zone').innerHTML = body;
   window.print();
+
+  levelState[lvl].printed = true;
+  setTabsVisualState(lvl);
+  const msg = document.getElementById('post-print-msg-' + lvl);
+  if(msg) msg.classList.add('show');
 }
 
-// ══════════════════════════════════════════════
-//  INJECT UI ELEMENTS ON DOM READY
-// ══════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('input', e => {
+  const target = e.target;
+  if(target.id === 'student-name-5ap'){
+    target.classList.remove('name-error');
+    if(levelState['5ap'].selectedSeries === null) hideAllPanels('5ap');
+    setNameGateState('5ap');
+    updateProgress('5ap');
+  } else if(target.id === 'student-name-6ap'){
+    target.classList.remove('name-error');
+    if(levelState['6ap'].selectedSeries === null) hideAllPanels('6ap');
+    setNameGateState('6ap');
+    updateProgress('6ap');
+  } else {
+    if(getScreen('5ap').contains(target)) updateProgress('5ap');
+    if(getScreen('6ap').contains(target)) updateProgress('6ap');
+  }
+});
+document.addEventListener('change', e => {
+  if(getScreen('5ap').contains(e.target)) updateProgress('5ap');
+  if(getScreen('6ap').contains(e.target)) updateProgress('6ap');
+});
 
-  ['5ap','6ap'].forEach(lvl=>{
-    const screen = document.getElementById('screen-'+lvl);
-    const wrap   = screen.querySelector('.wrap');
-    if(!wrap) return;
+document.addEventListener('DOMContentLoaded', () => {
+  ['5ap','6ap'].forEach(lvl => {
+    const screen = getScreen(lvl);
+    const wrap = screen.querySelector('.wrap');
+    const studentBar = screen.querySelector('.student-bar');
+    const input = studentBar?.querySelector('input');
+    if(input){
+      input.id = 'student-name-' + lvl;
+      input.autocomplete = 'name';
+      input.required = true;
+    }
 
-    // 1. Instruction banner (top of wrap, before student-bar)
-    const banner = document.createElement('div');
-    banner.className = 'instr-banner';
-    banner.innerHTML = `
-      <div class="instr-fr">
-        <span class="instr-title">📌 Consigne importante</span>
-        Lis attentivement chaque question. Réponds à <strong>toutes les questions</strong> de la série choisie.
-        La <strong>barre de progression</strong> en bas de l'écran indique ton avancement.
-        Le bouton <strong>🖨️ Imprimer mes réponses</strong> apparaîtra quand tu auras complété tous les champs.
-        Tu pourras ensuite imprimer tes réponses et les coller dans ton <strong>cahier de soutien</strong>.
-      </div>
-      <div class="instr-ar">
-        <span class="instr-title-ar">📌 تعليمة مهمة</span>
-        اقرأ كل سؤال بعناية. أجب على <strong>جميع أسئلة</strong> السلسلة المختارة.
-        تتبّع <strong>شريط التقدم</strong> في أسفل الشاشة لمعرفة مدى تقدّمك.
-        سيظهر زر <strong>🖨️ طبع أجوبتي</strong> تلقائياً بعد ملء جميع الخانات.
-        يمكنك بعد ذلك طباعة إجاباتك وتلصيقها في <strong>كراس الدعم</strong>.
-      </div>
-    `;
-    wrap.insertBefore(banner, wrap.firstChild);
+    const tabs = screen.querySelector('.tabs');
+    if(studentBar && !document.getElementById('level-gate-' + lvl)){
+      const gate = document.createElement('div');
+      gate.className = 'level-gate';
+      gate.id = 'level-gate-' + lvl;
+      gate.innerHTML = `
+        <h3>✍️ Étape 1 : écris ton nom complet</h3>
+        <p>Commence par écrire ton nom complet. Ensuite, choisis une seule série de soutien. Tu devras terminer cette série et imprimer tes réponses avant d’accéder à une autre série.</p>
+        <span class="ar">✍️ الخطوة الأولى: اكتب اسمك الكامل، ثم اختر سلسلة واحدة فقط. يجب أن تُكملها وتطبع الأجوبة قبل الانتقال إلى سلسلة أخرى.</span>
+      `;
+      wrap.insertBefore(gate, studentBar);
+    }
 
-    // 2. Print zone button (bottom of wrap)
-    const printZone = document.createElement('div');
-    printZone.className = 'print-zone-btn';
-    printZone.id = 'print-zone-'+lvl;
-    printZone.innerHTML = `
-      <div class="congrats-msg">
-        <span class="cg-emoji">🏆</span>
-        <div class="cg-fr">
-          Félicitations ! Tu as répondu à <strong>toutes les questions</strong>.<br>
-          Tu peux maintenant imprimer tes réponses et les coller dans ton cahier de soutien.<br>
-          <em>Continue comme ça, l'apprentissage c'est une aventure !</em>
-        </div>
-        <div class="cg-ar">
-          تهانيّ ! لقد أجبت على جميع الأسئلة بنجاح 🎉<br>
-          يمكنك الآن طباعة إجاباتك ولصقها في كراس الدعم.<br>
-          <strong>واصل المسيرة — التعلّم مغامرة لا تنتهي !</strong>
-        </div>
-      </div>
-      <button class="print-main-btn" onclick="doPrint('${lvl}')">
-        🖨️ Imprimer mes réponses
-        <span class="btn-ar">طبع أجوبتي</span>
-      </button>
-    `;
-    wrap.appendChild(printZone);
+    if(tabs && !document.getElementById('series-lock-msg-' + lvl)){
+      const alert = document.createElement('div');
+      alert.className = 'series-lock-msg';
+      alert.id = 'series-lock-msg-' + lvl;
+      alert.innerHTML = `<span class="icon">😠</span><span class="msg">جاوب بعدا على هاد السلسلة و طبع الأجوبة</span>`;
+      tabs.insertAdjacentElement('afterend', alert);
+    }
 
-    // 3. Sticky bottom bar (appended to body, linked to this level)
-    const sticky = document.createElement('div');
-    sticky.className = 'sticky-bottom';
-    sticky.id = 'sticky-'+lvl;
-    sticky.innerHTML = `
-      <div class="sticky-bottom-inner">
-        <div class="sticky-progress-wrap">
-          <div class="sticky-progress-top">
-            <span class="sticky-progress-label">📊 Progression</span>
-            <span class="sticky-pct">0%</span>
+    if(wrap && !document.getElementById('print-zone-' + lvl)){
+      const printZone = document.createElement('div');
+      printZone.className = 'print-zone-btn';
+      printZone.id = 'print-zone-' + lvl;
+      printZone.innerHTML = `
+        <div class="congrats-msg">
+          <span class="cg-emoji">🏆</span>
+          <div class="cg-fr">
+            Félicitations ! Tu as répondu à <strong>toutes les questions</strong>.<br>
+            Tu peux maintenant imprimer tes réponses et les coller dans ton cahier de soutien.<br>
+            <em>Continue comme ça, l'apprentissage c'est une aventure !</em>
           </div>
-          <div class="sticky-track">
-            <div class="sticky-bar"></div>
+          <div class="cg-ar">
+            تهانيّ ! لقد أجبت على جميع الأسئلة بنجاح 🎉<br>
+            يمكنك الآن طباعة إجاباتك ولصقها في كراس الدعم.<br>
+            <strong>واصل المسيرة — التعلّم مغامرة لا تنتهي !</strong>
           </div>
         </div>
-        <div class="sticky-citation"></div>
-      </div>
-    `;
-    document.body.appendChild(sticky);
+        <button class="print-main-btn" type="button" onclick="doPrint('${lvl}')">
+          🖨️ Imprimer mes réponses
+          <span class="btn-ar">طبع أجوبتي</span>
+        </button>
+        <div class="post-print-msg" id="post-print-msg-${lvl}">
+          ✅ Impression réussie. Tu peux maintenant passer à une autre série.
+          <span class="ar">✅ تمت الطباعة بنجاح. يمكنك الآن الانتقال إلى سلسلة أخرى.</span>
+        </div>
+      `;
+      wrap.appendChild(printZone);
+    }
 
-    // Show/hide sticky bar based on which screen is active
-    const observer = new MutationObserver(()=>{
-      const isActive = screen.classList.contains('active');
-      sticky.style.display = isActive ? '' : 'none';
+    getTabs(lvl).forEach((tab, index) => {
+      tab.type = 'button';
+      tab.dataset.series = String(index + 1);
     });
-    observer.observe(screen, {attributes:true, attributeFilter:['class']});
-    // Initial state
-    sticky.style.display = screen.classList.contains('active') ? '' : 'none';
-  });
 
-  // Add bottom padding to body so sticky bar doesn't cover content
-  document.body.style.paddingBottom = '80px';
+    hideAllPanels(lvl);
+    setNameGateState(lvl);
+    updateProgress(lvl);
+  });
 });
 
 </script>
