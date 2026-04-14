@@ -275,7 +275,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#1a1a2e;font
 
 .fill-row{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;flex-wrap:wrap}
 .f-lbl{font-size:13px;font-weight:600;color:#444;min-width:100px}
-input.dash{border:none;border-bottom:2.5px solid #b0bec5;outline:none;background:transparent;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;padding:3px 6px;transition:border-color .2s}
+input.dash{border:none;border-bottom:2px solid #b0bec5;outline:none;background:transparent;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;padding:2px 5px;transition:border-color .2s}
 input.dash:focus{border-bottom-color:var(--red)}
 input.dash.sm{width:80px}
 input.dash.md{width:150px}
@@ -286,7 +286,7 @@ input.dash.lg{width:220px}
 .ph-let.bl{color:var(--blue)}.ph-let.pu{color:var(--violet)}.ph-let.gr{color:var(--green)}.ph-let.or{color:var(--orange)}
 .ph-txt{font-size:13px;font-weight:500;color:#555}
 
-textarea.ta{width:100%;border:2px solid #d5dbe5;border-radius:8px;padding:11px 14px;resize:vertical;min-height:80px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;outline:none;background:#fafbfc;transition:border-color .2s;line-height:1.7}
+textarea.ta{width:100%;border:2px solid #d5dbe5;border-radius:8px;padding:9px 12px;resize:vertical;min-height:65px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;outline:none;background:#fafbfc;transition:border-color .2s}
 
 .reading-txt{background:#f0f7f4;border-left:4px solid var(--green);border-radius:9px;padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.85;color:#333}
 .reading-txt strong{color:var(--green);display:block;margin-bottom:6px;font-size:13.5px}
@@ -343,7 +343,10 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
   .back-btn{font-size:11px;padding:5px 10px}
 }
 
-
+  .panel{display:block!important;page-break-after:always}
+  body{background:#fff}
+  .screen{display:block!important}
+}
 
 
 
@@ -379,42 +382,63 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
 /* ══════════════════════════════════════════
    STICKY BOTTOM PROGRESS BAR
 ══════════════════════════════════════════ */
-/* ── HEADER PROGRESS BAR ── */
-.hdr-progress{
-  width:100%;padding:8px 20px 0;
-  background:rgba(0,0,0,.15);
-  margin-top:8px;
+.sticky-bottom{
+  position:fixed;bottom:0;left:0;right:0;z-index:500;
+  background:#fff;
+  border-top:2px solid #e8d9b0;
+  box-shadow:0 -4px 18px rgba(0,0,0,.12);
+  padding:10px 16px 12px;
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:none;
 }
-.hdr-prog-top{
+.sticky-bottom.visible{
+  display:block;
+  transform:translateY(0);
+}
+.sticky-bottom-inner{
+  max-width:860px;margin:0 auto;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.sticky-progress-wrap{flex:1;min-width:180px}
+.sticky-progress-top{
   display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
-.hdr-prog-label{
-  font-size:10.5px;font-weight:700;color:rgba(255,255,255,.82);letter-spacing:.3px;
+.sticky-progress-label{
+  font-size:11.5px;font-weight:700;color:#666;
 }
-.hdr-prog-pct{
-  font-size:12px;font-weight:900;color:#fff;
+.sticky-pct{
+  font-size:13px;font-weight:900;color:var(--orange);
   transition:color .3s;
 }
-.hdr-prog-pct.done{color:#5fdf8a}
-.hdr-prog-track{
-  height:8px;background:rgba(255,255,255,.2);border-radius:20px;overflow:hidden;margin-bottom:4px;
+.sticky-pct.done{color:#27ae60}
+.sticky-track{
+  height:10px;background:#e8e8e8;border-radius:20px;overflow:hidden;
 }
-.hdr-prog-bar{
+.sticky-bar{
   height:100%;border-radius:20px;
-  background:linear-gradient(90deg,#f4a261,#e9a825);
-  transition:width .5s ease, background .5s ease;width:0%;
+  background:linear-gradient(90deg,var(--gold),var(--orange-lt));
+  transition:width .5s ease, background .5s ease;
+  width:0%;
 }
-.hdr-prog-bar.done{background:linear-gradient(90deg,#2ecc71,#27ae60)}
-.hdr-citation{
-  font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;
-  font-size:12px;font-weight:600;color:rgba(255,255,255,.88);
-  min-height:18px;transition:opacity .4s;
-  padding-bottom:6px;
+.sticky-bar.done{
+  background:linear-gradient(90deg,#27ae60,#2ecc71);
 }
-@media(max-width:600px){
-  .hdr-progress{padding:6px 12px 0}
-  .hdr-citation{font-size:11px}
+
+/* Citation arabe dans la barre */
+.sticky-citation{
+  font-family:'Tajawal',sans-serif;
+  direction:rtl;text-align:right;
+  font-size:12.5px;font-weight:600;
+  color:var(--violet);
+  font-style:italic;
+  max-width:220px;
+  line-height:1.4;
+  transition:opacity .5s;
+}
+@media(max-width:500px){
+  .sticky-citation{display:none}
 }
 
 /* ══════════════════════════════════════════
@@ -506,13 +530,12 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
   .prt-ex:last-child{border-bottom:none}
   .prt-q{font-size:9.5pt;font-weight:700;margin-bottom:4pt}
   .prt-ans{
-    background:#f4f0ff;border:1.5px solid #9b5de5;
-    border-radius:3pt;padding:6pt 9pt;
-    font-size:10pt;color:#5c2d91;font-weight:800;
-    white-space:pre-wrap;min-height:22pt;
-    letter-spacing:.1pt;
+    background:#f9f9f9;border:1px solid #ddd;
+    border-radius:3pt;padding:5pt 8pt;
+    font-size:9.5pt;color:#1d3557;font-weight:600;
+    white-space:pre-wrap;min-height:20pt;
   }
-  .prt-ans.empty{color:#bbb;font-style:italic;font-weight:400;background:#f9f9f9;border-color:#ddd}
+  .prt-ans.empty{color:#aaa;font-style:italic}
   .prt-footer{
     position:fixed;bottom:0;left:0;right:0;
     border-top:1.5px solid #ccc;padding-top:5pt;
@@ -664,16 +687,6 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
       <p>Lecture · Lexique · Grammaire · Conjugaison · Orthographe · Production de l'écrit</p>
     </div>
     <div style="width:110px"></div>
-    <div class="hdr-progress" id="hdr-prog-5ap">
-      <div class="hdr-prog-top">
-        <span class="hdr-prog-label">📊 Progression de la série</span>
-        <span class="hdr-prog-pct" id="hdr-pct-5ap">0%</span>
-      </div>
-      <div class="hdr-prog-track">
-        <div class="hdr-prog-bar" id="hdr-bar-5ap"></div>
-      </div>
-      <div class="hdr-citation" id="hdr-cite-5ap"></div>
-    </div>
   </header>
     <div class="progress-track">
       <div class="progress-bar-sticky"></div>
@@ -1317,16 +1330,6 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
       <p>Lecture · Lexique · Grammaire · Conjugaison · Orthographe · Production de l'écrit</p>
     </div>
     <div style="width:110px"></div>
-    <div class="hdr-progress" id="hdr-prog-6ap">
-      <div class="hdr-prog-top">
-        <span class="hdr-prog-label">📊 Progression de la série</span>
-        <span class="hdr-prog-pct" id="hdr-pct-6ap">0%</span>
-      </div>
-      <div class="hdr-prog-track">
-        <div class="hdr-prog-bar" id="hdr-bar-6ap"></div>
-      </div>
-      <div class="hdr-citation" id="hdr-cite-6ap"></div>
-    </div>
   </header>
     <div class="progress-track">
       <div class="progress-bar-sticky"></div>
@@ -2154,13 +2157,17 @@ function updateProgress(lvl){
   const pct     = total===0 ? 100 : Math.round((filled/total)*100);
   const done    = pct===100;
 
-  // ── Header progress bar
-  const hdrBar  = document.getElementById('hdr-bar-'+lvl);
-  const hdrPct  = document.getElementById('hdr-pct-'+lvl);
-  const hdrCite = document.getElementById('hdr-cite-'+lvl);
-  if(hdrBar){ hdrBar.style.width=pct+'%'; hdrBar.classList.toggle('done',done); }
-  if(hdrPct){ hdrPct.textContent=pct+'%'; hdrPct.classList.toggle('done',done); }
-  if(hdrCite){ hdrCite.textContent=getCitation(pct); }
+  // ── Sticky bottom bar
+  const sticky = document.getElementById('sticky-'+lvl);
+  if(sticky){
+    const bar  = sticky.querySelector('.sticky-bar');
+    const pctEl= sticky.querySelector('.sticky-pct');
+    const citEl= sticky.querySelector('.sticky-citation');
+    if(bar){ bar.style.width=pct+'%'; bar.classList.toggle('done',done); }
+    if(pctEl){ pctEl.textContent=pct+'%'; pctEl.classList.toggle('done',done); }
+    if(citEl){ citEl.textContent=getCitation(pct); }
+    sticky.classList.toggle('visible', pct>0);
+  }
 
   // ── Print button zone
   const printZone = document.getElementById('print-zone-'+lvl);
@@ -2344,8 +2351,38 @@ document.addEventListener('DOMContentLoaded', ()=>{
     `;
     wrap.appendChild(printZone);
 
+    // 3. Sticky bottom bar (appended to body, linked to this level)
+    const sticky = document.createElement('div');
+    sticky.className = 'sticky-bottom';
+    sticky.id = 'sticky-'+lvl;
+    sticky.innerHTML = `
+      <div class="sticky-bottom-inner">
+        <div class="sticky-progress-wrap">
+          <div class="sticky-progress-top">
+            <span class="sticky-progress-label">📊 Progression</span>
+            <span class="sticky-pct">0%</span>
+          </div>
+          <div class="sticky-track">
+            <div class="sticky-bar"></div>
+          </div>
+        </div>
+        <div class="sticky-citation"></div>
+      </div>
+    `;
+    document.body.appendChild(sticky);
+
+    // Show/hide sticky bar based on which screen is active
+    const observer = new MutationObserver(()=>{
+      const isActive = screen.classList.contains('active');
+      sticky.style.display = isActive ? '' : 'none';
+    });
+    observer.observe(screen, {attributes:true, attributeFilter:['class']});
+    // Initial state
+    sticky.style.display = screen.classList.contains('active') ? '' : 'none';
   });
 
+  // Add bottom padding to body so sticky bar doesn't cover content
+  document.body.style.paddingBottom = '80px';
 });
 
 </script>
