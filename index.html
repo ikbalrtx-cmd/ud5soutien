@@ -167,6 +167,14 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#1a1a2e;font
 .lc-emoji{font-size:44px;display:block;margin-bottom:8px;position:relative;z-index:1}
 .lc-title{font-size:22px;font-weight:900;position:relative;z-index:1}
 .lc-desc{font-size:12px;opacity:.8;position:relative;z-index:1;margin-top:4px}
+.lc-desc-ar{
+  font-family:'Tajawal',sans-serif;
+  font-size:15px;font-weight:700;
+  direction:rtl;text-align:right;
+  color:rgba(255,255,255,.88);
+  margin-top:5px;
+  position:relative;z-index:1;
+}
 
 .lc-bottom{background:var(--white);padding:16px 20px}
 .lc-theme{font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
@@ -181,17 +189,37 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#1a1a2e;font
 .lc-arrow-6{color:var(--blue)}
 .lc-arrow-icon{font-size:18px}
 
-/* Notice bilingual */
+/* Welcome notice bilingual */
 .welcome-notice{
-  background:#fffbea;border-radius:12px;
-  padding:14px 18px;margin-bottom:0;
-  border-left:4px solid var(--gold);
-  box-shadow:var(--shadow);font-size:12.5px;
-  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  background:linear-gradient(135deg,#fffbea,#fff8f0);
+  border-radius:14px;padding:18px 22px;
+  box-shadow:0 3px 16px rgba(0,0,0,.09);
+  border-left:5px solid var(--gold);
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-bottom:0;
 }
-.wn-fr{color:#444;line-height:1.6}
-.wn-ar{direction:rtl;text-align:right;font-family:'Tajawal',sans-serif;font-size:14px;color:#444;line-height:1.7}
-.wn-label{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--orange-lt);display:block;margin-bottom:3px}
+.wn-col{font-size:12.5px;line-height:1.7;color:#444}
+.wn-fr{}
+.wn-ar{
+  direction:rtl;text-align:right;
+  font-family:'Tajawal',sans-serif;font-size:14px;
+  border-right:3px solid var(--gold);
+  padding-right:14px;
+}
+.wn-label{
+  display:block;font-size:11px;font-weight:800;
+  text-transform:uppercase;letter-spacing:1px;
+  color:var(--orange-lt);margin-bottom:5px;
+}
+.wn-label-ar{
+  display:block;font-size:13px;font-weight:800;
+  font-family:'Tajawal',sans-serif;
+  color:var(--orange-lt);margin-bottom:5px;
+}
+@media(max-width:600px){
+  .welcome-notice{grid-template-columns:1fr}
+  .wn-ar{border-right:none;border-top:2px dashed #e8d9b0;padding-right:0;padding-top:12px}
+}
 
 /* ═══════════════════════════════════════════
    SHARED EXERCISE STYLES
@@ -320,6 +348,171 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
   body{background:#fff}
   .screen{display:block!important}
 }
+
+/* ═══════════════════════════════════════════
+   PROGRESS & PRINT SYSTEM
+═══════════════════════════════════════════ */
+
+/* Bilingual instruction banner */
+.progress-banner{
+  background:linear-gradient(135deg,#fffbea,#fff8f0);
+  border-radius:14px;padding:16px 20px;margin-bottom:18px;
+  box-shadow:0 3px 16px rgba(0,0,0,.09);
+  border-left:5px solid var(--gold);
+  position:relative;overflow:hidden;
+}
+/* Sticky progress bar only - stays at top on scroll */
+.progress-sticky{
+  position:sticky;top:60px;z-index:150;
+  background:var(--white);
+  border-bottom:2px solid #e8d9b0;
+  padding:8px 18px 10px;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  display:none;
+}
+.progress-sticky.visible{display:block}
+.progress-sticky .progress-label{
+  font-size:11px;font-weight:700;color:#666;
+  display:flex;justify-content:space-between;margin-bottom:4px;
+}
+.progress-sticky .prog-pct-sticky{
+  font-size:12px;font-weight:900;color:var(--orange);
+}
+.progress-sticky .progress-track{height:7px;background:#e8e8e8;border-radius:20px;overflow:hidden}
+.progress-sticky .progress-bar-sticky{
+  height:100%;border-radius:20px;
+  background:linear-gradient(90deg,var(--gold),var(--orange-lt));
+  transition:width .4s ease;width:0%;
+}
+.progress-sticky .progress-bar-sticky.complete{background:linear-gradient(90deg,#27ae60,#2ecc71)}
+.progress-banner::before{
+  content:'';position:absolute;top:0;right:0;
+  width:80px;height:80px;
+  background:radial-gradient(circle,rgba(233,168,37,.12),transparent 70%);
+}
+.pb-fr{font-size:12.5px;font-weight:600;color:#444;line-height:1.65;margin-bottom:8px}
+.pb-ar{font-family:'Tajawal',sans-serif;direction:rtl;text-align:right;font-size:14px;font-weight:600;color:#444;line-height:1.7;border-top:1px dashed #e8d9b0;padding-top:8px}
+.pb-title-fr{font-weight:800;color:var(--orange);font-size:13px;display:block;margin-bottom:3px}
+.pb-title-ar{font-weight:800;color:var(--orange);font-size:14px;display:block;margin-bottom:3px}
+
+/* Progress bar */
+.progress-wrap{margin-top:14px}
+.progress-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11.5px;font-weight:700;color:#777;margin-bottom:6px;
+}
+.progress-label .prog-pct{
+  font-size:13px;font-weight:900;color:var(--orange);
+}
+.progress-track{
+  height:10px;background:#e8e8e8;border-radius:20px;overflow:hidden;
+}
+.progress-bar{
+  height:100%;border-radius:20px;
+  background:linear-gradient(90deg,var(--gold),var(--orange-lt));
+  transition:width .4s ease;width:0%;
+}
+.progress-bar.complete{
+  background:linear-gradient(90deg,#27ae60,#2ecc71);
+}
+
+/* Print button */
+.print-btn-wrap{
+  text-align:center;margin:24px 0 8px;
+}
+.print-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#27ae60,#1e8449);
+  color:#fff;border:none;border-radius:12px;
+  padding:14px 28px;font-family:'Montserrat',sans-serif;
+  font-size:15px;font-weight:800;cursor:pointer;
+  box-shadow:0 6px 20px rgba(39,174,96,.35);
+  transition:all .25s;letter-spacing:.3px;
+  opacity:0;pointer-events:none;
+  transform:translateY(8px);
+}
+.print-btn.visible{
+  opacity:1;pointer-events:all;
+  transform:translateY(0);
+  animation:pulse-green 2s infinite;
+}
+@keyframes pulse-green{
+  0%,100%{box-shadow:0 6px 20px rgba(39,174,96,.35)}
+  50%{box-shadow:0 6px 28px rgba(39,174,96,.6)}
+}
+.print-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 10px 28px rgba(39,174,96,.45)}
+.print-btn .btn-ar{font-family:'Tajawal',sans-serif;font-size:14px;opacity:.88}
+
+/* ── PRINT STYLES ── */
+@media print{
+  /* hide everything except print content */
+  body > *:not(#print-zone){display:none!important}
+  #print-zone{display:block!important}
+  
+  #print-zone{
+    font-family:'Montserrat',sans-serif;
+    font-size:12pt;color:#000;
+    background:#fff;
+    margin:0;padding:0;
+  }
+  
+  /* print page header */
+  .print-page-header{
+    display:flex!important;
+    justify-content:space-between;align-items:center;
+    border-bottom:2.5px solid #1d3557;
+    padding-bottom:8px;margin-bottom:16px;
+    page-break-inside:avoid;
+  }
+  .print-page-header .ph-left{font-size:10pt;font-weight:700;color:#1d3557}
+  .print-page-header .ph-center{font-size:11pt;font-weight:900;color:#c1121f;text-align:center}
+  .print-page-header .ph-right{font-size:10pt;font-weight:700;color:#1d3557;text-align:right}
+  
+  /* print page footer */
+  .print-page-footer{
+    position:fixed;bottom:0;left:0;right:0;
+    display:flex!important;justify-content:space-between;
+    border-top:1.5px solid #ccc;padding-top:6px;
+    font-size:9pt;color:#666;
+    background:#fff;
+  }
+  
+  /* print card styles */
+  .print-card{
+    margin-bottom:18pt;
+    page-break-inside:avoid;
+  }
+  .print-card-title{
+    background:#1d3557;color:#fff;
+    padding:6pt 10pt;font-size:11pt;font-weight:800;
+    border-radius:4pt;margin-bottom:8pt;
+  }
+  .print-card-title.green{background:#1b6e3b}
+  .print-card-title.orange{background:#b5440a}
+  .print-card-title.blue{background:#1d3557}
+  .print-card-title.purple{background:#5c2d91}
+  .print-card-title.red{background:#7a0000}
+  .print-card-title.darkred{background:#5a0000}
+  
+  .print-ex{margin-bottom:10pt;padding-bottom:8pt;border-bottom:1px dashed #ccc}
+  .print-ex:last-child{border-bottom:none}
+  .print-consigne{font-size:10pt;font-weight:700;margin-bottom:5pt;color:#111}
+  .print-answer{
+    background:#f9f9f9;border:1px solid #ddd;border-radius:4pt;
+    padding:6pt 8pt;font-size:10pt;min-height:24pt;
+    color:#1d3557;font-weight:600;white-space:pre-wrap;word-break:break-word;
+  }
+  .print-answer.empty{color:#aaa;font-style:italic}
+  
+  @page{
+    size:A4;
+    margin:2cm 2cm 2.5cm 2cm;
+  }
+}
+
+/* print zone hidden on screen */
+#print-zone{display:none}
+
 </style>
 </head>
 <body>
@@ -384,6 +577,7 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
           <span class="lc-emoji">🌊</span>
           <div class="lc-title">5 AP</div>
           <div class="lc-desc">Cinquième Année Primaire</div>
+          <div class="lc-desc-ar">المستوى الخامس</div>
         </div>
         <div class="lc-bottom">
           <div class="lc-theme">Thème principal</div>
@@ -406,6 +600,7 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
           <span class="lc-emoji">🌍</span>
           <div class="lc-title">6 AP</div>
           <div class="lc-desc">Sixième Année Primaire</div>
+          <div class="lc-desc-ar">المستوى السادس</div>
         </div>
         <div class="lc-bottom">
           <div class="lc-theme">Thème principal</div>
@@ -425,17 +620,19 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
 
     <!-- BILINGUAL NOTICE -->
     <div class="welcome-notice">
-      <div class="wn-fr">
-        <span class="wn-label">📌 Consigne générale</span>
-        Réponds directement dans la page interactive, puis recopie tes réponses dans ton <strong>cahier de soutien</strong>. 3 séries d'exercices progressifs t'attendent !
+      <div class="wn-col wn-fr">
+        <span class="wn-label">📌 Consigne importante</span>
+        Lis attentivement chaque question. Réponds à <strong>toutes les questions</strong> de la série choisie.
+        Le bouton <strong>🖨️ Imprimer mes réponses</strong> apparaîtra automatiquement lorsque tu auras complété tous les champs.
+        Tu pourras ensuite imprimer tes réponses et les coller dans ton <strong>cahier de soutien</strong>.
       </div>
-      <div class="wn-ar">
-        <span class="wn-label">📌 تعليمة عامة</span>
-        أجب مباشرةً في الصفحة التفاعلية، ثم انقل إجاباتك إلى <strong>كراس الدعم</strong>. تنتظرك 3 سلاسل من التمارين التدرجية !
+      <div class="wn-col wn-ar">
+        <span class="wn-label-ar">📌 تعليمة مهمة</span>
+        اقرأ كل سؤال بعناية. أجب على <strong>جميع أسئلة</strong> السلسلة المختارة.
+        سيظهر زر <strong>🖨️ طبع أجوبتي</strong> تلقائياً بعد ملء جميع الخانات.
+        يمكنك بعد ذلك طباعة إجاباتك وتلصيقها في <strong>كراس الدعم</strong>.
       </div>
     </div>
-
-  </div><!-- /welcome-wrap -->
 
   <footer class="footer-home">
     Élaborée par <strong>Prof : Ikbal Ouaissa</strong> &nbsp;|&nbsp; S.S Kariat Arkmane &nbsp;|&nbsp; Direction Provinciale : Nador – L'Oriental
@@ -459,6 +656,17 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
     <div style="width:110px"></div>
   </header>
 
+  <!-- Sticky progress bar -->
+  <div class="progress-sticky" id="sticky-5ap">
+    <div class="progress-label">
+      <span>📊 Progression — Série en cours</span>
+      <span class="prog-pct-sticky">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-bar-sticky"></div>
+    </div>
+  </div>
+
   <div class="wrap">
 
 
@@ -467,16 +675,7 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
     <input type="text" placeholder="Écris ton prénom et ton nom ici…">
   </div>
 
-  <div class="notice">
-    <div class="notice-fr">
-      <strong>📌 Consigne</strong>
-      Réponds directement dans cette page, puis recopie tes réponses dans ton <strong>cahier de soutien</strong>. Choisis ta série et travaille avec soin !
-    </div>
-    <div class="notice-ar">
-      <strong>📌 تعليمة</strong>
-      أجب مباشرةً في هذه الصفحة، ثم انقل إجاباتك في <strong>كراس الدعم</strong>. اختر السلسلة واعمل بجدية !
-    </div>
-  </div>
+  
 
   <div class="tabs">
     <button class="tab on" onclick="show5(1,this)">📘 Série 1</button>
@@ -1110,6 +1309,17 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
     <div style="width:110px"></div>
   </header>
 
+  <!-- Sticky progress bar -->
+  <div class="progress-sticky" id="sticky-6ap">
+    <div class="progress-label">
+      <span>📊 Progression — Série en cours</span>
+      <span class="prog-pct-sticky">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-bar-sticky"></div>
+    </div>
+  </div>
+
   <div class="wrap">
 
 
@@ -1120,16 +1330,7 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
   </div>
 
   <!-- NOTICE BILINGUE -->
-  <div class="notice">
-    <div class="notice-fr">
-      <strong>📌 Consigne</strong>
-      Réponds directement dans cette page, puis recopie tes réponses dans ton <strong>cahier de soutien</strong>. Choisis ta série et travaille avec soin !
-    </div>
-    <div class="notice-ar">
-      <strong>📌 تعليمة</strong>
-      أجب مباشرةً في هذه الصفحة، ثم انقل إجاباتك في <strong>كراس الدعم</strong>. اختر السلسلة واعمل بجدية !
-    </div>
-  </div>
+  
 
   <!-- TABS -->
   <div class="tabs">
@@ -1851,11 +2052,15 @@ footer .ar{font-family:'Tajawal',sans-serif;direction:rtl;font-size:13px;color:#
 </div><!-- /screen-6ap -->
 
 <script>
-// ── Navigation
+// ══════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════
 function goLevel(lvl){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+lvl).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+  // init progress for active panel in that level
+  setTimeout(()=>updateProgress(lvl), 100);
 }
 function goHome(){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -1863,26 +2068,272 @@ function goHome(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ── 5AP series tabs
+// ══════════════════════════════════════════════
+//  SERIES TABS
+// ══════════════════════════════════════════════
 function show5(n,btn){
   document.querySelectorAll('#screen-5ap .panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('#screen-5ap .tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('ap5-p'+n).classList.add('on');
   btn.classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
+  updateProgress('5ap');
 }
-
-// ── 6AP series tabs
 function show6(n,btn){
   document.querySelectorAll('#screen-6ap .panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('#screen-6ap .tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('ap6-p'+n).classList.add('on');
   btn.classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
+  updateProgress('6ap');
 }
 
-// ── Fix onclick attributes in dynamic content to use namespaced functions
-// already handled by string replacement above
+// ══════════════════════════════════════════════
+//  PROGRESS & PRINT BUTTON
+// ══════════════════════════════════════════════
+function getActivePanel(lvl){
+  return document.querySelector('#screen-'+lvl+' .panel.on');
+}
+
+function countFields(panel){
+  const inputs = Array.from(panel.querySelectorAll('input.dash'));
+  const textareas = Array.from(panel.querySelectorAll('textarea.ta'));
+  const checkboxes = Array.from(panel.querySelectorAll('input[type="checkbox"]'));
+  return {inputs, textareas, checkboxes, total: inputs.length + textareas.length + checkboxes.length};
+}
+
+function countFilled(panel){
+  const {inputs, textareas, checkboxes} = countFields(panel);
+  const fi = inputs.filter(i=>i.value.trim().length>0).length;
+  const ft = textareas.filter(t=>t.value.trim().length>0).length;
+  const fc = checkboxes.filter(c=>c.checked).length;
+  return fi + ft + fc;
+}
+
+function updateProgress(lvl){
+  const panel = getActivePanel(lvl);
+  if(!panel) return;
+  const {total} = countFields(panel);
+  const filled = countFilled(panel);
+  const percent = total===0 ? 100 : Math.round((filled/total)*100);
+  const complete = percent===100;
+
+  // Banner progress bar
+  const bar = document.querySelector('#screen-'+lvl+' .progress-bar');
+  const pct = document.querySelector('#screen-'+lvl+' .prog-pct');
+  if(bar){ bar.style.width=percent+'%'; bar.classList.toggle('complete',complete); }
+  if(pct) pct.textContent = percent+'%';
+
+  // Sticky progress bar
+  const stickyBar = document.querySelector('#sticky-'+lvl+' .progress-bar-sticky');
+  const stickyPct = document.querySelector('#sticky-'+lvl+' .prog-pct-sticky');
+  const stickyWrap = document.getElementById('sticky-'+lvl);
+  if(stickyBar){ stickyBar.style.width=percent+'%'; stickyBar.classList.toggle('complete',complete); }
+  if(stickyPct) stickyPct.textContent = percent+'%';
+  if(stickyWrap) stickyWrap.classList.toggle('visible', percent>0);
+
+  // Print button
+  const btn = document.querySelector('#screen-'+lvl+' .print-btn');
+  if(btn) btn.classList.toggle('visible', complete);
+}
+
+// ══════════════════════════════════════════════
+//  LISTEN TO INPUT CHANGES
+// ══════════════════════════════════════════════
+document.addEventListener('input', function(e){
+  const screen5 = document.getElementById('screen-5ap');
+  const screen6 = document.getElementById('screen-6ap');
+  if(screen5.contains(e.target)) updateProgress('5ap');
+  if(screen6.contains(e.target)) updateProgress('6ap');
+});
+document.addEventListener('change', function(e){
+  const screen5 = document.getElementById('screen-5ap');
+  const screen6 = document.getElementById('screen-6ap');
+  if(screen5.contains(e.target)) updateProgress('5ap');
+  if(screen6.contains(e.target)) updateProgress('6ap');
+});
+
+// ══════════════════════════════════════════════
+//  PRINT FUNCTION
+// ══════════════════════════════════════════════
+function doPrint(lvl){
+  const panel = getActivePanel(lvl);
+  if(!panel) return;
+  
+  // Get student name
+  const nameInput = document.querySelector('#screen-'+lvl+' .student-bar input');
+  const studentName = nameInput ? nameInput.value.trim() : '—';
+  
+  // Get series number
+  const activeTab = document.querySelector('#screen-'+lvl+' .tab.on');
+  const serieNum = activeTab ? activeTab.textContent.replace(/[^123]/g,'') : '?';
+  const niveau = lvl==='5ap' ? '5AP' : '6AP';
+  const serie = 'Série '+serieNum;
+  
+  // Build print content
+  let printHTML = '';
+  
+  // Page header (repeated via CSS @page not possible in all browsers, so we add it once)
+  printHTML += `
+    <div class="print-page-header">
+      <div class="ph-left">Niveau : <strong>${niveau}</strong></div>
+      <div class="ph-center">Exercices de Soutien et de Consolidation<br><small>${serie}</small></div>
+      <div class="ph-right">Élève : <strong>${studentName || '—'}</strong></div>
+    </div>
+  `;
+  
+  // Color map for card heads
+  const colorMap = {
+    'h-lecture':'green','h-lexique':'orange','h-grammaire':'blue',
+    'h-conjugaison':'purple','h-ortho':'red','h-production':'darkred'
+  };
+  
+  // Parse each card
+  const cards = panel.querySelectorAll('.card');
+  cards.forEach(card=>{
+    const head = card.querySelector('.card-head');
+    let headClass = 'blue';
+    if(head){
+      for(const [cls,col] of Object.entries(colorMap)){
+        if(head.classList.contains(cls)){ headClass=col; break; }
+      }
+    }
+    const headText = head ? head.textContent.trim() : '';
+    
+    printHTML += `<div class="print-card">`;
+    printHTML += `<div class="print-card-title ${headClass}">${headText}</div>`;
+    
+    const exItems = card.querySelectorAll('.ex');
+    exItems.forEach(ex=>{
+      printHTML += `<div class="print-ex">`;
+      
+      // Consigne
+      const consigne = ex.querySelector('.consigne');
+      if(consigne) printHTML += `<div class="print-consigne">${consigne.innerHTML}</div>`;
+      
+      // Reading text (lecture)
+      const reading = ex.querySelector('.reading-txt');
+      if(reading) printHTML += `<div style="background:#f0f7f4;border-left:4px solid #1b6e3b;border-radius:4pt;padding:8pt 10pt;margin-bottom:6pt;font-size:9.5pt;line-height:1.8">${reading.innerHTML}</div>`;
+      
+      // Collect all answers in order
+      // Textareas
+      const textareas = ex.querySelectorAll('textarea.ta');
+      textareas.forEach(ta=>{
+        const val = ta.value.trim();
+        printHTML += `<div class="print-answer${val?'':' empty'}">${val || '(sans réponse)'}</div>`;
+      });
+      
+      // Inline inputs (dash) grouped by ph-row or fill-row
+      const rows = ex.querySelectorAll('.ph-row, .fill-row, .arrow-row');
+      if(rows.length>0 && textareas.length===0){
+        rows.forEach(row=>{
+          let rowText = '';
+          row.childNodes.forEach(node=>{
+            if(node.nodeType===3) rowText += node.textContent; // text node
+            else if(node.tagName==='SPAN') rowText += node.textContent;
+            else if(node.tagName==='INPUT' && node.type==='text'){
+              const v = node.value.trim();
+              rowText += v ? `[${v}]` : '[___]';
+            }
+          });
+          if(rowText.trim()) printHTML += `<div class="print-answer">${rowText.trim()}</div>`;
+        });
+      } else if(rows.length===0 && textareas.length===0){
+        // standalone inputs
+        const inps = ex.querySelectorAll('input.dash');
+        if(inps.length>0){
+          let line = '';
+          inps.forEach(inp=>{ line += (inp.value.trim()||'___')+' · '; });
+          printHTML += `<div class="print-answer">${line.replace(/ · $/,'')}</div>`;
+        }
+      }
+      
+      // Checkboxes (grille)
+      const checks = ex.querySelectorAll('input[type="checkbox"]');
+      if(checks.length>0){
+        printHTML += `<div style="margin-top:5pt">`;
+        checks.forEach(cb=>{
+          const label = cb.nextElementSibling;
+          const txt = label ? label.textContent : '';
+          printHTML += `<div style="font-size:9pt;margin-bottom:3pt">${cb.checked?'☑':'☐'} ${txt}</div>`;
+        });
+        printHTML += `</div>`;
+      }
+      
+      printHTML += `</div>`; // /print-ex
+    });
+    
+    printHTML += `</div>`; // /print-card
+  });
+  
+  // Footer fixed
+  printHTML += `
+    <div class="print-page-footer">
+      <span>Soutien et Consolidation – UD5</span>
+      <span>Par : Prof Ikbal Ouaissa</span>
+    </div>
+  `;
+  
+  // Inject into print zone and trigger print
+  const zone = document.getElementById('print-zone');
+  zone.innerHTML = printHTML;
+  window.print();
+}
+
+// ══════════════════════════════════════════════
+//  INJECT PROGRESS BANNER + BAR + PRINT BTN
+//  into each level's .wrap after DOM ready
+// ══════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function(){
+  ['5ap','6ap'].forEach(lvl=>{
+    const wrap = document.querySelector('#screen-'+lvl+' .wrap');
+    if(!wrap) return;
+    const niveau = lvl==='5ap'?'5AP':'6AP';
+    
+    const banner = document.createElement('div');
+    banner.className = 'progress-banner';
+    banner.innerHTML = `
+      <div class="pb-fr">
+        <span class="pb-title-fr">📌 Consigne importante</span>
+        Lis attentivement chaque question. Réponds à <strong>toutes les questions</strong> de la série choisie.
+        Le bouton <strong>🖨️ Imprimer mes réponses</strong> apparaîtra automatiquement lorsque tu auras complété tous les champs.
+        Tu pourras ensuite imprimer tes réponses et les coller dans ton <strong>cahier de soutien</strong>.
+      </div>
+      <div class="pb-ar">
+        <span class="pb-title-ar">📌 تعليمة مهمة</span>
+        اقرأ كل سؤال بعناية. أجب على <strong>جميع أسئلة</strong> السلسلة المختارة.
+        سيظهر زر <strong>🖨️ طبع أجوبتي</strong> تلقائياً بعد ملء جميع الخانات.
+        يمكنك بعد ذلك طباعة إجاباتك وتلصيقها في <strong>كراس الدعم</strong>.
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>📊 Barre de progression — remplis tous les champs pour débloquer l'impression</span>
+          <span class="prog-pct">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+    `;
+    
+    // Insert after student-bar
+    const studentBar = wrap.querySelector('.student-bar');
+    if(studentBar && studentBar.nextSibling){
+      wrap.insertBefore(banner, studentBar.nextSibling);
+    } else {
+      wrap.insertBefore(banner, wrap.firstChild);
+    }
+    
+    // Add print button at bottom of wrap
+    const printWrap = document.createElement('div');
+    printWrap.className = 'print-btn-wrap';
+    printWrap.innerHTML = `
+      <button class="print-btn" onclick="doPrint('${lvl}')">
+        🖨️ Imprimer mes réponses &nbsp;<span class="btn-ar">طبع أجوبتي</span>
+      </button>
+    `;
+    wrap.appendChild(printWrap);
+  });
+});
 </script>
 </body>
-</html>
